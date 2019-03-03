@@ -1,10 +1,11 @@
-package com.yeputra.footballclub.ui
+package com.yeputra.footballclub.main.ui
 
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.yeputra.footballclub.activity.MainActivity
-import com.yeputra.footballclub.adapter.ListClubAdapter
-import com.yeputra.footballclub.model.Club
+import com.yeputra.footballclub.detail.DetailClubActivity
+import com.yeputra.footballclub.main.MainActivity
+import com.yeputra.footballclub.main.adapter.ListClubAdapter
+import com.yeputra.footballclub.main.model.Club
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
@@ -16,6 +17,10 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
  */
 
 class UIListClub(var clubs: MutableList<Club>): AnkoComponent<MainActivity>, AnkoLogger {
+    companion object {
+        val intentData = "intentData"
+    }
+
     override fun createView(ui: AnkoContext<MainActivity>): View = with(ui){
         debug("Create UI list club")
 
@@ -26,8 +31,7 @@ class UIListClub(var clubs: MutableList<Club>): AnkoComponent<MainActivity>, Ank
                 lparams(width = matchParent, height = matchParent)
                 layoutManager = LinearLayoutManager(context)
                 adapter = ListClubAdapter(clubs){
-                    toast("Hello ${it.name}")
-                    startActivity<SecondActivity>("name" to "dicoding")
+                    startActivity<DetailClubActivity>(intentData to it)
                 }
             }
         }

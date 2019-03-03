@@ -1,4 +1,4 @@
-package com.yeputra.footballclub
+package com.yeputra.footballclub.utils
 
 import android.util.TypedValue
 import android.view.View

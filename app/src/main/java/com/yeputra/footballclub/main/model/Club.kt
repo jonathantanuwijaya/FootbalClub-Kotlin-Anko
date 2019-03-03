@@ -1,7 +1,6 @@
-package com.yeputra.footballclub.model
+package com.yeputra.footballclub.main.model
 
 import android.os.Parcelable
-import androidx.versionedparcelable.ParcelField
 import kotlinx.android.parcel.Parcelize
 
 

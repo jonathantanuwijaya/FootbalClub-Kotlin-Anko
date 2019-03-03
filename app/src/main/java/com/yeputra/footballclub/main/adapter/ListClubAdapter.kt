@@ -1,4 +1,4 @@
-package com.yeputra.footballclub.adapter
+package com.yeputra.footballclub.main.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.yeputra.footballclub.model.Club
-import com.yeputra.footballclub.ui.UIItemsClub
+import com.yeputra.footballclub.main.model.Club
+import com.yeputra.footballclub.main.ui.UIItemsClub
 import org.jetbrains.anko.AnkoContext
 
 

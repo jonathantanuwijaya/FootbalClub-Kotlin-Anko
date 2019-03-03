@@ -1,9 +1,11 @@
-package com.yeputra.footballclub.ui
+package com.yeputra.footballclub.main.ui
 
+import android.annotation.SuppressLint
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.yeputra.footballclub.utils.makeClickable
 import org.jetbrains.anko.*
 
 
@@ -15,30 +17,41 @@ import org.jetbrains.anko.*
 
 class UIItemsClub: AnkoComponent<ViewGroup>{
 
-    companion object Id{
+    companion object {
         val img_logo_club = 1
         val tv_name       = 2
     }
 
+    @SuppressLint("ResourceType")
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui){
-        linearLayout() {
+        linearLayout {
             orientation = LinearLayout.HORIZONTAL
             lparams(width = matchParent, height = wrapContent){
                 padding = dip(16)
             }
+            makeClickable()
 
-            imageView {
-                id = img_logo_club
-            }.lparams(width = dip(42), height = dip(42)){
-                gravity = Gravity.CENTER_VERTICAL
-            }
+            setupItemImage()
 
-            textView{
-                id = tv_name
-            }.lparams(width = matchParent){
-                gravity = Gravity.CENTER_VERTICAL
-                margin = dip(8)
-            }
+            setupItemName()
         }
     }
+
+    private fun @AnkoViewDslMarker _LinearLayout.setupItemImage() {
+        imageView {
+            id = img_logo_club
+        }.lparams(width = dip(42), height = dip(42)) {
+            gravity = Gravity.CENTER_VERTICAL
+        }
+    }
+
+    private fun @AnkoViewDslMarker _LinearLayout.setupItemName() {
+        textView {
+            id = tv_name
+        }.lparams(width = matchParent) {
+            gravity = Gravity.CENTER_VERTICAL
+            margin = dip(8)
+        }
+    }
+
 }
