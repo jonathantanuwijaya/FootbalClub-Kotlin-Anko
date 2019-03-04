@@ -18,8 +18,8 @@ import org.jetbrains.anko.*
 class UIItemsClub: AnkoComponent<ViewGroup>{
 
     companion object {
-        val img_logo_club = 1
-        val tv_name       = 2
+        const val img_logo_club = 1
+        const val tv_name       = 2
     }
 
     @SuppressLint("ResourceType")

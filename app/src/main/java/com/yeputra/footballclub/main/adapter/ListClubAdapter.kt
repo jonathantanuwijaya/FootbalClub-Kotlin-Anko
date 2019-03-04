@@ -17,8 +17,8 @@ import org.jetbrains.anko.AnkoContext
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
 class ListClubAdapter(
-    val items: MutableList<Club>,
-    val listeter: (Club)-> Unit
+    private val items: MutableList<Club>,
+    private val listener: (Club)-> Unit
 ): RecyclerView.Adapter<ListClubAdapter.VHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder =
@@ -29,7 +29,7 @@ class ListClubAdapter(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: VHolder, position: Int) =
-        holder.binding(items[position],listeter)
+        holder.binding(items[position],listener)
 
     class VHolder(val v: View)
         : RecyclerView.ViewHolder(v) {
