@@ -25,7 +25,7 @@ class ViewPagerAdapter(
 
     override fun getCount(): Int = fragments.size
 
-    fun getTitle(pos: Int): String = fragments[pos].title
+    override fun getPageTitle(position: Int): CharSequence? = fragments[position].title
 }
 
 class Pagers(val title: String, val fragment: Fragment)

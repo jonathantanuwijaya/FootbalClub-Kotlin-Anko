@@ -2,7 +2,6 @@ package com.yeputra.footballclub.utils
 
 import android.util.TypedValue
 import android.view.View
-import org.jetbrains.anko.backgroundResource
 
 
 /**
@@ -17,5 +16,5 @@ fun View.makeClickable() {
         android.R.attr.selectableItemBackground,
         outValue,
         true)
-    backgroundResource = outValue.resourceId
+    this.setBackgroundResource(outValue.resourceId)
 }
