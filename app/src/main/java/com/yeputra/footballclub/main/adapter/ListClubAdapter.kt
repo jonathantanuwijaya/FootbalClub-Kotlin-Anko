@@ -1,14 +1,13 @@
 package com.yeputra.footballclub.main.adapter
 
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
+import com.yeputra.footballclub.R
 import com.yeputra.footballclub.main.model.Club
-import com.yeputra.footballclub.main.ui.UIItemsClub
-import org.jetbrains.anko.AnkoContext
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.items_match.*
 
 
 /**
@@ -23,7 +22,7 @@ class ListClubAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder =
         VHolder(
-            UIItemsClub().createView(AnkoContext.create(parent.context, parent))
+            LayoutInflater.from(parent.context).inflate(R.layout.items_match,parent,false)
         )
 
     override fun getItemCount(): Int = items.size
@@ -31,17 +30,12 @@ class ListClubAdapter(
     override fun onBindViewHolder(holder: VHolder, position: Int) =
         holder.binding(items[position],listener)
 
-    class VHolder(val v: View)
-        : RecyclerView.ViewHolder(v) {
-
-        var imgLogo: ImageView = v.findViewById(UIItemsClub.img_logo_club)
-        var tvName : TextView = v.findViewById(UIItemsClub.tv_name)
+    class VHolder(override val containerView: View)
+        : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun binding(club: Club, listener: (Club) -> Unit){
-            tvName.text = club.name
-            Glide.with(v.context).load(club.icon).into(imgLogo)
-
-            v.setOnClickListener { listener(club) }
+            tv_date.text = club.name
+            containerView.setOnClickListener { listener(club) }
         }
     }
 }

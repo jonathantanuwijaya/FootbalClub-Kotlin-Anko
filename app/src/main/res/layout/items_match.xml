@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="@dimen/margin_small">
+        <TextView
+                android:id="@+id/tv_date"
+                style="@style/TextView.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sat, 02 Feb 2018"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:gravity="end|center_vertical"
+                    android:layout_weight="1">
+                <TextView
+                        android:id="@+id/tv_name_kandang"
+                        style="@style/TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Madrid"
+                        android:layout_margin="@dimen/margin_small"
+                        android:textAlignment="center"/>
+                <TextView
+                        android:id="@+id/tv_score_kandang"
+                        style="@style/TextView.BigBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_small"
+                        android:text="0"
+                        android:textAlignment="center"
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_weight="1.8">
+                <TextView
+                        style="@style/TextView.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="vs"
+                        android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:gravity="start|center_vertical"
+                    android:layout_weight="1">
+                <TextView
+                        android:id="@+id/tv_score_tandang"
+                        style="@style/TextView.BigBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:layout_margin="@dimen/margin_small"
+                        android:textAlignment="center"
+                />
+
+                <TextView
+                        android:id="@+id/tv_name_tandang"
+                        style="@style/TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Barcelona"
+                        android:layout_margin="@dimen/margin_small"
+                        android:textAlignment="center"
+                />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/devider"
+        android:background="@color/devider"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"/>
+</LinearLayout>

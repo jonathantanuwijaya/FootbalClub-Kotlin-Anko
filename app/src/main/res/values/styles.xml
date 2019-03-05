@@ -8,4 +8,32 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextView" parent="android:TextAppearance">
+        <item name="android:textColor">@color/colorTextViewPrimay</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="TextView.Small" parent="TextView">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextView.Medium" parent="TextView">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextView.Big" parent="TextView">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextView.SmallBold" parent="TextView.Small">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.MediumBold" parent="TextView.Medium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.BigBold" parent="TextView.Big">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
