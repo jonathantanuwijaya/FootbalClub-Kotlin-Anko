@@ -1,5 +1,7 @@
 package com.yeputra.footballclub.base
 
+import android.content.Context
+
 
 /**
  * Created by yovi.putra
@@ -7,6 +9,9 @@ package com.yeputra.footballclub.base
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
 interface IBaseView {
+
+    fun getContextView(): Context
+
     fun showProgressbar()
 
     fun hideProgressbar()

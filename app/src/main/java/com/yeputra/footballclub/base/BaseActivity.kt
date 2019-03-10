@@ -1,12 +1,11 @@
 package com.yeputra.footballclub.base
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.view.LayoutInflater
+import android.util.Log
 import android.widget.Toast
-import com.yeputra.footballclub.R
+import com.yeputra.footballclub.utils.LoadingController
 
 
 /**
@@ -17,35 +16,35 @@ import com.yeputra.footballclub.R
 abstract class BaseActivity<presenter: IBasePresenter>
     : AppCompatActivity(), IBaseView {
 
-    @SuppressLint("ResourceType")
-    private lateinit var builder: AlertDialog.Builder
+    private lateinit var loading: LoadingController
 
     protected lateinit var presenter: presenter
 
-    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = initPresenter()
 
-        builder = AlertDialog.Builder(this)
-        val v = LayoutInflater.from(this).inflate(R.layout.loading,null)
-        builder.setView(v)
+        loading = LoadingController(this)
     }
 
     abstract fun initPresenter(): presenter
 
-    @SuppressLint("ResourceType")
-    override fun showProgressbar() {
-        builder.show()
-    }
+    override fun getContextView(): Context = this
 
-    override fun hideProgressbar() {
-        builder.create().hide()
-    }
+    override fun showProgressbar() = loading.showDialog()
 
-    override fun onPresenterSuccess(data: Any?) {}
+    override fun hideProgressbar() = loading.hideDialog()
+
+    override fun onPresenterSuccess(data: Any?) {
+        Log.d(TAG, "onPresenterSuccess")
+    }
 
     override fun onPresenterFailed(message: String?) {
+        Log.d(TAG, "onPresenterFailed $message")
         Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+    }
+
+    companion object {
+        private val TAG: String? = BaseActivity::class.java.simpleName
     }
 }

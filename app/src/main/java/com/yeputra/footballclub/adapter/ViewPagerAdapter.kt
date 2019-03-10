@@ -3,7 +3,8 @@ package com.yeputra.footballclub.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.yeputra.footballclub.ui.ListMatchFm
+import com.yeputra.footballclub.ui.LastMatchFm
+import com.yeputra.footballclub.ui.NextMatchFm
 
 
 /**
@@ -17,8 +18,8 @@ class ViewPagerAdapter(
 ): FragmentPagerAdapter(fmManager){
 
     val fragments = mutableListOf(
-        Pagers("List Match",ListMatchFm()),
-        Pagers("Next Match",ListMatchFm())
+        Pagers("Last Match",LastMatchFm()),
+        Pagers("Next Match",NextMatchFm())
     )
 
     override fun getItem(p0: Int): Fragment = fragments[p0].fragment

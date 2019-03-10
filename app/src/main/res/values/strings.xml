@@ -2,83 +2,10 @@
     <string name="app_name">Football Match</string>
 
     <string name="no_internet_connection">Masalah jaringan, cek koneksi internet Anda dan silakan coba lagi</string>
-
-    <array name="league">
-        <item>English Premier League</item>
-        <item>English League Championship</item>
-        <item>German Bundesliga</item>
-        <item>Italian Serie A</item>
-        <item>French Ligue 1</item>
-        <item>Spanish La Liga</item>
-    </array>
-
-    <string-array name="club_name">
-        <item>Barcelona FC</item>
-        <item>Real Madrid FC</item>
-        <item>Bayern Munchen FC</item>
-        <item>Manchester City FC</item>
-        <item>Manchester United FC</item>
-        <item>Chelsea FC</item>
-        <item>AC Milan FC</item>
-        <item>Arsenal FC</item>
-    </string-array>
-
-    <string-array name="club_desc">
-        <item>Founded in 1899 by a group of Swiss, English and Catalan footballers led by Joan Gamper, the club has
-            become a symbol of Catalan culture and Catalanism, hence the motto \'Mes que un club\' (\'More than a
-            club\'). Unlike many other football clubs, the supporters own and operate Barcelona. It is the fourth-most
-            valuable sports team in the world, worth $4.06 billion, and the world\'s second-richest football club in
-            terms of revenue, with an annual turnover of €690.4 million.[2][3] The official Barcelona anthem is the
-            \'Can not del Barca\', written by Jaume Picas and Josep Maria Espinas.[4]
-        </item>
-        <item>Real Madrid Club de Fútbol, sometimes known as just Real Madrid, is a Spanish football club from Madrid,
-            Spain. It was started in 1902 and competes in La Liga (the Spanish top league). The \'Real\' in the club\'s
-            name is Spanish for \'royal\', because it was blessed by the King of Spain in 1920.
-        </item>
-        <item>FC Bayern was founded in 1900 by 11 football players, led by Franz John.[5] Although Bayern won its first
-            national championship in 1932,[6] the club was not selected for the Bundesliga at its inception in 1963.[7]
-            The club had its period of greatest success in the middle of the 1970s when, under the captaincy of Franz
-            Beckenbauer, it won the European Cup three times in a row (1974–1976)
-        </item>
-        <item>Manchester City Football Club is a football club based in Manchester, England, that competes in the
-            Premier League, the top flight of English football. Founded in 1880 as St. Mark\'s (West Gorton), it became
-            Ardwick Association Football Club in 1887 and Manchester City in 1894. The club\'s home ground is the City
-            of Manchester Stadium in east Manchester, to which it moved in 2003, having played at Maine Road since 1923.
-        </item>
-        <item>Manchester United Football Club, commonly known as Man United,[3][4] or simply United, is a professional
-            football club based in Old Trafford, Greater Manchester, England, that competes in the Premier League, the
-            top flight of English football. Nicknamed \'the Red Devils\', the club was founded as Newton Heath LYR
-            Football Club in 1878, changed its name to Manchester United in 1902 and moved to its current stadium, Old
-            Trafford, in 1910.
-        </item>
-        <item>Founded in 1905, the club\'s home ground since then has been Stamford Bridge.[7] Chelsea won its only
-            First Division title in 1955, but saw limited success in various cup competitions until 2003, when the club
-            was purchased by Russian billionaire Roman Abramovich.[8] Chelsea then saw heavy investment, and have since
-            won eighteen honours under Abramovich.[9]
-        </item>
-        <item>Associazione Calcio Milan (Italian pronunciation: [assotʃatˈtsjoːne ˈkaltʃo ˈmiːlan]), commonly referred
-            to as A.C. Milan or simply Milan, is a professional football club in Milan, Italy, founded in 1899.[5][6]
-            The club has spent its entire history, with the exception of the 1980–81 and 1982–83 seasons, in the top
-            flight of Italian football, known as Serie A since 1929–30.[5]
-        </item>
-        <item>Arsenal Football Club is a professional football club based in Islington, London, England, that plays in
-            the Premier League, the top flight of English football. It has won 13 League titles, a record 13 FA Cups,
-            two League Cups, the League Centenary Trophy, 15 FA Community Shields, one UEFA Cup Winners\' Cup and one
-            Inter-Cities Fairs Cup.
-        </item>
-    </string-array>
-
-    <array name="club_image">
-        <item>@drawable/img_barca</item>
-        <item>@drawable/img_madrid</item>
-        <item>@drawable/img_bayern</item>
-        <item>@drawable/img_city</item>
-        <item>@drawable/img_mu</item>
-        <item>@drawable/img_chelsea</item>
-        <item>@drawable/img_acm</item>
-        <item>@drawable/img_arsenal</item>
-    </array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vs">vs</string>
+    <string name="home">Home</string>
+    <string name="away">Away</string>
+    <string name="score">0</string>
+    <string name="lbl_goals">Goals</string>
+    <string name="val_date">Sat, 22-Marc-2019</string>
 </resources>

@@ -3,7 +3,6 @@ package com.yeputra.footballclub.presenter
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.base.BasePresenter
 import com.yeputra.footballclub.base.IBaseView
-import com.yeputra.footballclub.model.Event
 import com.yeputra.footballclub.model.Events
 import com.yeputra.footballclub.repository.ApiRespository
 import com.yeputra.footballclub.utils.RestClient
@@ -30,7 +29,7 @@ class LeaguePresenter(val v: IBaseView): BasePresenter(v) {
         api.getLastMatch(leagueId).enqueue(object : Callback<Events> {
             override fun onFailure(call: Call<Events>, t: Throwable) {
                 v.hideProgressbar()
-                v.onPresenterFailed(context.getString(R.string.no_internet_connection))
+                v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
             }
             override fun onResponse(call: Call<Events>, response: Response<Events>) {
                 v.onPresenterSuccess(response.body())
@@ -44,7 +43,7 @@ class LeaguePresenter(val v: IBaseView): BasePresenter(v) {
         api.getNextMatch(leagueId).enqueue(object : Callback<Events> {
             override fun onFailure(call: Call<Events>, t: Throwable) {
                 v.hideProgressbar()
-                v.onPresenterFailed(context.getString(R.string.no_internet_connection))
+                v.onPresenterFailed(t.message)
             }
             override fun onResponse(call: Call<Events>, response: Response<Events>) {
                 v.onPresenterSuccess(response.body())
@@ -55,12 +54,12 @@ class LeaguePresenter(val v: IBaseView): BasePresenter(v) {
 
     fun getDetail(eventId: String) {
         v.showProgressbar()
-        api.getDetail(eventId).enqueue(object : Callback<Event> {
-            override fun onFailure(call: Call<Event>, t: Throwable) {
+        api.getDetail(eventId).enqueue(object : Callback<Events> {
+            override fun onFailure(call: Call<Events>, t: Throwable) {
                 v.hideProgressbar()
-                v.onPresenterFailed(context.getString(R.string.no_internet_connection))
+                v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
             }
-            override fun onResponse(call: Call<Event>, response: Response<Event>) {
+            override fun onResponse(call: Call<Events>, response: Response<Events>) {
                 v.onPresenterSuccess(response.body())
                 v.hideProgressbar()
             }

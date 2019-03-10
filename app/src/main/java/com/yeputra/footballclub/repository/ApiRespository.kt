@@ -1,11 +1,10 @@
 package com.yeputra.footballclub.repository
 
-import com.yeputra.footballclub.model.Event
 import com.yeputra.footballclub.model.Events
 import com.yeputra.footballclub.utils.BASE_URL
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 /**
@@ -15,12 +14,12 @@ import retrofit2.http.Path
  */
 interface ApiRespository {
 
-    @GET(BASE_URL + "eventspastleague.php?id={leagueId}")
-    fun getLastMatch(@Path("leagueId") leagueId: String): Call<Events>
+    @GET(BASE_URL + "eventspastleague.php")
+    fun getLastMatch(@Query("id") leagueId: String): Call<Events>
 
-    @GET(BASE_URL + "eventsnextleague.php?id={leagueId}")
-    fun getNextMatch(@Path("leagueId") leagueId: String): Call<Events>
+    @GET(BASE_URL + "eventsnextleague.php")
+    fun getNextMatch(@Query("id") leagueId: String): Call<Events>
 
-    @GET(BASE_URL + "lookupevent.php?id={eventId}")
-    fun getDetail(@Path("eventId") eventId: String): Call<Event>
+    @GET(BASE_URL + "lookupevent.php")
+    fun getDetail(@Query("id") eventId: String): Call<Events>
 }
