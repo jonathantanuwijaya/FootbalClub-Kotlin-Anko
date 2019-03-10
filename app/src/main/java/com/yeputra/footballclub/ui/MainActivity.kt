@@ -1,14 +1,17 @@
-package com.yeputra.footballclub.main.ui
+package com.yeputra.footballclub.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.main.adapter.ViewPagerAdapter
+import com.yeputra.footballclub.adapter.ViewPagerAdapter
+import com.yeputra.footballclub.base.BaseActivity
+import com.yeputra.footballclub.presenter.LeaguePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_with_tab.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<LeaguePresenter>() {
+
+    override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

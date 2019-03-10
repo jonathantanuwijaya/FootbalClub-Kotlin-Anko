@@ -1,11 +1,11 @@
-package com.yeputra.footballclub.main.adapter
+package com.yeputra.footballclub.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.main.model.Club
+import com.yeputra.footballclub.model.Events
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.items_match.*
 
@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.items_match.*
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
 class ListClubAdapter(
-    private val items: MutableList<Club>,
-    private val listener: (Club)-> Unit
+    private val items: MutableList<Events>,
+    private val listener: (Events)-> Unit
 ): RecyclerView.Adapter<ListClubAdapter.VHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder =
@@ -33,8 +33,8 @@ class ListClubAdapter(
     class VHolder(override val containerView: View)
         : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun binding(club: Club, listener: (Club) -> Unit){
-            tv_date.text = club.name
+        fun binding(club: Events, listener: (Events) -> Unit){
+            tv_date.text = ""
             containerView.setOnClickListener { listener(club) }
         }
     }

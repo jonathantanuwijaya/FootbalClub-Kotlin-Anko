@@ -1,9 +1,9 @@
-package com.yeputra.footballclub.main.adapter
+package com.yeputra.footballclub.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.yeputra.footballclub.main.ui.ListMatchFm
+import com.yeputra.footballclub.ui.ListMatchFm
 
 
 /**

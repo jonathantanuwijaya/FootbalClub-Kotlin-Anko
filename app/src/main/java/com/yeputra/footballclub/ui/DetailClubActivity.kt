@@ -1,4 +1,4 @@
-package com.yeputra.footballclub.detail.ui
+package com.yeputra.footballclub.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
