@@ -10,7 +10,7 @@
 
     <!-- THEME -->
     <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:indeterminateDrawable">@drawable/loading_drable</item>
     </style>
 
 

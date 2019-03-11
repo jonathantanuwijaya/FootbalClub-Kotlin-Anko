@@ -21,6 +21,6 @@ class LoadingController(private val activity: Activity) {
     }
 
     fun hideDialog() {
-        dialog?.let { it.dismiss() }
+        dialog.dismiss()
     }
 }

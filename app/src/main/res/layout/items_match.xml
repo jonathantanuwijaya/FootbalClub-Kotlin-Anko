@@ -18,7 +18,7 @@
                 style="@style/TextView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sat, 02 Feb 2018"
+                android:text="@string/val_date"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"/>
 
@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:baselineAligned="false">
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -37,20 +38,20 @@
                     android:gravity="end|center_vertical"
                     android:layout_weight="1">
                 <TextView
-                        android:id="@+id/tv_name_kandang"
+                        android:id="@+id/tv_home_name"
                         style="@style/TextView.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Madrid"
+                        android:text="@string/home"
                         android:layout_margin="@dimen/margin_small"
                         android:textAlignment="center"/>
                 <TextView
-                        android:id="@+id/tv_score_kandang"
+                        android:id="@+id/tv_home_score"
                         style="@style/TextView.BigBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_small"
-                        android:text="0"
+                        android:text="@string/score"
                         android:textAlignment="center"
                 />
             </LinearLayout>
@@ -66,7 +67,7 @@
                         style="@style/TextView.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="vs"
+                        android:text="@string/vs"
                         android:textAlignment="center"/>
             </LinearLayout>
 
@@ -78,21 +79,21 @@
                     android:gravity="start|center_vertical"
                     android:layout_weight="1">
                 <TextView
-                        android:id="@+id/tv_score_tandang"
+                        android:id="@+id/tv_away_score"
                         style="@style/TextView.BigBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text="@string/score"
                         android:layout_margin="@dimen/margin_small"
                         android:textAlignment="center"
                 />
 
                 <TextView
-                        android:id="@+id/tv_name_tandang"
+                        android:id="@+id/tv_away_name"
                         style="@style/TextView.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Barcelona"
+                        android:text="@string/away"
                         android:layout_margin="@dimen/margin_small"
                         android:textAlignment="center"
                 />

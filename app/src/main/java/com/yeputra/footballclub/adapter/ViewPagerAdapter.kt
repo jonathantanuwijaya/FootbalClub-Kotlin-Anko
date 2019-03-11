@@ -14,10 +14,10 @@ import com.yeputra.footballclub.ui.NextMatchFm
  */
 
 class ViewPagerAdapter(
-    val fmManager: FragmentManager
+    fmManager: FragmentManager
 ): FragmentPagerAdapter(fmManager){
 
-    val fragments = mutableListOf(
+    private val fragments = mutableListOf(
         Pagers("Last Match",LastMatchFm()),
         Pagers("Next Match",NextMatchFm())
     )

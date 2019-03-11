@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mlpt.siemo.mobilebanking.base.adapter.BaseRecyclerViewAdapter
+import com.yeputra.footballclub.base.BaseRecyclerViewAdapter
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.model.Event
 import kotlinx.android.extensions.LayoutContainer
@@ -36,19 +36,19 @@ class MatchAdapter(
 
         fun binding(event: Event, listener: (Event) -> Unit){
             tv_date.text = event.getFormatDateEvent()
-            tv_name_kandang.text = event.homeTeam
-            tv_name_tandang.text = event.awayTeam
+            tv_home_name.text = event.homeTeam
+            tv_away_name.text = event.awayTeam
 
             event.homeScore?.let {
-                tv_score_kandang.text = it
+                tv_home_score.text = it
             }?: run{
-                tv_score_kandang.text = "-"
+                tv_home_score.text = "-"
             }
 
             event.awayScore?.let{
-                tv_score_tandang.text = it
+                tv_away_score.text = it
             }?: run{
-                tv_score_tandang.text = "-"
+                tv_away_score.text = "-"
             }
             containerView.setOnClickListener { listener(event) }
         }

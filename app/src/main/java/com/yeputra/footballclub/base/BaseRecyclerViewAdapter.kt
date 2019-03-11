@@ -1,4 +1,4 @@
-package com.mlpt.siemo.mobilebanking.base.adapter
+package com.yeputra.footballclub.base
 
 import android.support.v7.widget.RecyclerView
 import android.widget.Filter

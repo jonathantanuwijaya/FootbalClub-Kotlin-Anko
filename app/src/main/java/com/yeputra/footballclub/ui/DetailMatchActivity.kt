@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.ItemDetailAdapter
 import com.yeputra.footballclub.base.BaseActivity
@@ -57,7 +58,11 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
         tv_away_score.text = data.awayScore
 
         data.tumb?.let {
-            Glide.with(this).load(it).into(img_thumb)
+            Glide.with(this)
+                .load(it)
+                .apply(RequestOptions().placeholder(R.drawable.sample))
+                .apply(RequestOptions().override(350,200))
+                .into(img_thumb)
         }
 
         itemAdapter.addItem(Item("Goals", data.homeGoalDetail, data.awayGoalDetail))

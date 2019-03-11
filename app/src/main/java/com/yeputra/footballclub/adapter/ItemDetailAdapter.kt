@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mlpt.siemo.mobilebanking.base.adapter.BaseRecyclerViewAdapter
+import com.yeputra.footballclub.base.BaseRecyclerViewAdapter
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.model.Item
 import kotlinx.android.extensions.LayoutContainer
@@ -29,10 +29,8 @@ class ItemDetailAdapter(
             tv_away_detail.text = parsing(detail.away)
         }
 
-        fun parsing(data: String?): String =
-            data?.let {
-                it.replace(";","\n").trim()
-            }?: run{""}
+        private fun parsing(data: String?): String =
+            data?.replace(";","\n")?.trim() ?: run{""}
     }
 
 }

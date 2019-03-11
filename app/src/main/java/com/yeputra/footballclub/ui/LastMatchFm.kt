@@ -2,6 +2,7 @@ package com.yeputra.footballclub.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -27,15 +28,33 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initData()
+        initViewConfigure()
+    }
+
+    private fun initData() {
         matchAdapter = MatchAdapter(mutableListOf()){
             val intent = Intent(context, DetailMatchActivity::class.java)
             intent.putExtra(INTENT_DATA, it.idEvent)
             context?.startActivity(intent)
         }
+        presenter.getLastMatch(league)
+    }
+
+    private fun initViewConfigure(){
         rv_match.layoutManager = LinearLayoutManager(context)
         rv_match.adapter = matchAdapter
 
-        presenter.getLastMatch(league)
+        swipe_container.setColorSchemeColors(
+            ContextCompat.getColor(getContextView(),R.color.colorPrimary),
+            ContextCompat.getColor(getContextView(),R.color.colorPrimaryDark),
+            ContextCompat.getColor(getContextView(),R.color.colorTextViewPrimay),
+            ContextCompat.getColor(getContextView(),R.color.devider)
+        )
+
+        swipe_container.setOnRefreshListener {
+            presenter.getLastMatch(league)
+        }
     }
 
     override fun onPresenterSuccess(data: Any?) {
@@ -45,6 +64,14 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
             is Events ->
                 data.events?.let { matchAdapter.replaceItem(it) }
         }
+    }
+
+    override fun showProgressbar() {
+        swipe_container.isRefreshing = true
+    }
+
+    override fun hideProgressbar() {
+        swipe_container.isRefreshing = false
     }
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
