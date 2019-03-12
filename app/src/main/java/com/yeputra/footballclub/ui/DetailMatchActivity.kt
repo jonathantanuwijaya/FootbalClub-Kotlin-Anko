@@ -11,7 +11,9 @@ import com.yeputra.footballclub.base.BaseActivity
 import com.yeputra.footballclub.model.Event
 import com.yeputra.footballclub.model.Events
 import com.yeputra.footballclub.model.Item
+import com.yeputra.footballclub.model.Team
 import com.yeputra.footballclub.presenter.LeaguePresenter
+import com.yeputra.footballclub.repository.database.database
 import com.yeputra.footballclub.utils.INTENT_DATA
 import kotlinx.android.synthetic.main.activity_detail_match.*
 
@@ -47,6 +49,9 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
                     finish()
                 }
             }
+            is Team -> {
+                loadLogoTeam(data)
+            }
         }
     }
 
@@ -73,5 +78,9 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
         itemAdapter.addItem(Item("Midfield", data.homeLineupMidfield, data.awayLineupMidfield))
         itemAdapter.addItem(Item("Yellow Card", data.homeYellowCards, data.awayYellowCards))
         itemAdapter.addItem(Item("Red Card", data.homeRedCards, data.awayRedCards))
+    }
+
+    private fun loadLogoTeam(team: Team){
+        database.use {  }
     }
 }

@@ -4,7 +4,8 @@ import com.yeputra.footballclub.R
 import com.yeputra.footballclub.base.BasePresenter
 import com.yeputra.footballclub.base.IBaseView
 import com.yeputra.footballclub.model.Events
-import com.yeputra.footballclub.repository.ApiRespository
+import com.yeputra.footballclub.model.Team
+import com.yeputra.footballclub.repository.api.ApiRespository
 import com.yeputra.footballclub.utils.RestClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,6 +61,20 @@ class LeaguePresenter(val v: IBaseView): BasePresenter(v) {
                 v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
             }
             override fun onResponse(call: Call<Events>, response: Response<Events>) {
+                v.onPresenterSuccess(response.body())
+                v.hideProgressbar()
+            }
+        })
+    }
+
+    fun getTeam(teamId: String){
+        v.showProgressbar()
+        api.getTeam(teamId).enqueue(object : Callback<Team> {
+            override fun onFailure(call: Call<Team>, t: Throwable) {
+                v.hideProgressbar()
+                v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
+            }
+            override fun onResponse(call: Call<Team>, response: Response<Team>) {
                 v.onPresenterSuccess(response.body())
                 v.hideProgressbar()
             }
