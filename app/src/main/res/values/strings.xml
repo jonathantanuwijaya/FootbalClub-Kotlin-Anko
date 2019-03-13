@@ -8,4 +8,8 @@
     <string name="score">0</string>
     <string name="lbl_goals">Goals</string>
     <string name="val_date">Sat, 22-Marc-2019</string>
+
+    <string name="botnav_prev_match">Prev. Match</string>
+    <string name="botnav_next_match">Next Match</string>
+    <string name="botnav_favorite">Favorites</string>
 </resources>

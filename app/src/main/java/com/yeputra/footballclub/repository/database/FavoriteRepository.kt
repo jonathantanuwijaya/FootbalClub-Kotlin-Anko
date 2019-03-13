@@ -3,8 +3,10 @@ package com.yeputra.footballclub.repository.database
 import android.content.Context
 import com.yeputra.footballclub.model.Event
 import com.yeputra.footballclub.model.Favorite
+import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
 class FavoriteRepository(private val context: Context) {
 
@@ -26,5 +28,14 @@ class FavoriteRepository(private val context: Context) {
                 Favorite.EVENT_ID + "={id}",
                 "id" to id)
         }
+    }
+
+    fun findAll(): MutableList<Favorite> {
+        val data = mutableListOf<Favorite>()
+        context.database.use {
+            val result = select(Favorite.TABLE_FAVORITE)
+            data.addAll(result.parseList(classParser()))
+        }
+        return data
     }
 }
