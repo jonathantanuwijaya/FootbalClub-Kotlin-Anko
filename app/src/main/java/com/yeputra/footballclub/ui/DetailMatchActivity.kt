@@ -8,20 +8,23 @@ import com.bumptech.glide.request.RequestOptions
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.ItemDetailAdapter
 import com.yeputra.footballclub.base.BaseActivity
-import com.yeputra.footballclub.model.Event
-import com.yeputra.footballclub.model.Events
-import com.yeputra.footballclub.model.Item
-import com.yeputra.footballclub.model.Team
+import com.yeputra.footballclub.model.*
+import com.yeputra.footballclub.presenter.FavoritePresenter
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.repository.database.database
 import com.yeputra.footballclub.utils.INTENT_DATA
+import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.activity_detail_match.*
 
-class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
-
+class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListener {
     private lateinit var itemAdapter: ItemDetailAdapter
+    private lateinit var favPresenter: FavoritePresenter
+    private lateinit var event: Event
+    private var isFavorite: Boolean = false
 
-    override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
+    override fun initPresenter(): LeaguePresenter {
+        favPresenter = FavoritePresenter(this)
+        return LeaguePresenter(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,7 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
 
         val eventId = intent.extras?.getString(INTENT_DATA)
         presenter.getDetail(eventId?:"0")
+        bt_favorite.setOnClickListener(this)
     }
 
     override fun onPresenterSuccess(data: Any?) {
@@ -43,7 +47,9 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
         when(data){
             is Events -> {
                 data.events?.get(0)?.let {
+                    this.event = it
                     setupContentView(it)
+                    setFlagFavorite()
                 }?: run{
                     onPresenterFailed(getString(R.string.no_internet_connection))
                     finish()
@@ -80,7 +86,40 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>() {
         itemAdapter.addItem(Item("Red Card", data.homeRedCards, data.awayRedCards))
     }
 
+    private fun setFlagFavorite(){
+        event.idEvent?.let {
+            favPresenter.findOne(it)?.let {
+                isFavorite = true
+                bt_favorite.setImageResource(R.drawable.ic_favorite_selected)
+            }?: run {
+                isFavorite = false
+                bt_favorite.setImageResource(R.drawable.ic_favorite_unselect)
+            }
+        }
+    }
+
     private fun loadLogoTeam(team: Team){
-        database.use {  }
+    }
+
+    override fun onClick(v: View?) {
+        if(isFavorite)
+            event.idEvent?.let {
+                favPresenter.delete(it){
+                    snackbar("Berasil dihapus dari favorite")
+                }
+            }
+        else {
+            favPresenter.add(Favorite(
+                event.idEvent,
+                event.getFormatDateEvent(),
+                event.homeTeam,
+                event.homeScore,
+                event.awayTeam,
+                event.awayScore
+            )) {
+                snackbar("Berasil ditambahkan ke favorite")
+            }
+        }
+        setFlagFavorite()
     }
 }

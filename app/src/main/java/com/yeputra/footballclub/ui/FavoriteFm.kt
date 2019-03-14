@@ -8,17 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.MatchAdapter
+import com.yeputra.footballclub.adapter.FavoriteAdapter
 import com.yeputra.footballclub.base.BaseFragment
-import com.yeputra.footballclub.model.Events
-import com.yeputra.footballclub.presenter.LeaguePresenter
+import com.yeputra.footballclub.presenter.FavoritePresenter
 import com.yeputra.footballclub.utils.INTENT_DATA
-import com.yeputra.footballclub.utils.league
 import kotlinx.android.synthetic.main.list_match.*
 
-class FavoriteFm : BaseFragment<LeaguePresenter>() {
+class FavoriteFm : BaseFragment<FavoritePresenter>() {
 
-    private lateinit var matchAdapter: MatchAdapter
+    private lateinit var matchAdapter: FavoriteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +31,24 @@ class FavoriteFm : BaseFragment<LeaguePresenter>() {
     }
 
     private fun initData() {
-        matchAdapter = MatchAdapter(mutableListOf()){
+        matchAdapter = FavoriteAdapter(mutableListOf()){
             val intent = Intent(context, DetailMatchActivity::class.java)
-            intent.putExtra(INTENT_DATA, it.idEvent)
+            intent.putExtra(INTENT_DATA, it.eventId)
             context?.startActivity(intent)
         }
-        presenter.getNextMatch(league)
+
+        getRepository()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getRepository()
+    }
+
+    private fun getRepository(){
+        presenter.findAll {
+            matchAdapter.replaceItem(it)
+        }
     }
 
     private fun initViewConfigure() {
@@ -53,16 +63,7 @@ class FavoriteFm : BaseFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getNextMatch(league)
-        }
-    }
-
-    override fun onPresenterSuccess(data: Any?) {
-        super.onPresenterSuccess(data)
-
-        when(data){
-            is Events ->
-                data.events?.let { matchAdapter.replaceItem(it) }
+            getRepository()
         }
     }
 
@@ -74,5 +75,5 @@ class FavoriteFm : BaseFragment<LeaguePresenter>() {
         swipe_container.isRefreshing = false
     }
 
-    override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
+    override fun initPresenter(): FavoritePresenter = FavoritePresenter(this)
 }

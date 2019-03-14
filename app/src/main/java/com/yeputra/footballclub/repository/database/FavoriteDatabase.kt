@@ -26,7 +26,7 @@ class FavoriteDatabase(
 
     override fun onCreate(db: SQLiteDatabase) {
         db.createTable(Favorite.TABLE_FAVORITE, true,
-            Favorite.EVENT_ID to INTEGER + PRIMARY_KEY,
+            Favorite.EVENT_ID to TEXT + PRIMARY_KEY,
             Favorite.EVENT_DATE to TEXT,
             Favorite.HOME_NAME to TEXT,
             Favorite.HOME_SCORE to TEXT,

@@ -10,7 +10,7 @@
     <item
         android:id="@+id/menu_next_match"
         android:enabled="true"
-        android:title="@string/botnav_prev_match"
+        android:title="@string/botnav_next_match"
         android:icon="@drawable/ic_date"
         app:showAsAction="ifRoom"/>
 

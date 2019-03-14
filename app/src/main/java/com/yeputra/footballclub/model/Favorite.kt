@@ -1,11 +1,11 @@
 package com.yeputra.footballclub.model
 
 data class Favorite(
-    val eventId: Long?,
+    val eventId: String?,
     val eventDate: String?,
     val homeName: String?,
-    val awayName: String?,
     val homeScore: String?,
+    val awayName: String?,
     val awayScore: String?
 ) {
 

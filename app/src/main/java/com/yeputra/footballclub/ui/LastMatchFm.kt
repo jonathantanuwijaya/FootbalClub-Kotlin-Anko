@@ -67,11 +67,11 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
     }
 
     override fun showProgressbar() {
-        swipe_container.isRefreshing = true
+        swipe_container?.isRefreshing = true
     }
 
     override fun hideProgressbar() {
-        swipe_container.isRefreshing = false
+        swipe_container?.isRefreshing = false
     }
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
