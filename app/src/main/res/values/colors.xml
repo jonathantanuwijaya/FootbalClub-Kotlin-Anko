@@ -5,7 +5,8 @@
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="transparent">#00FFFFFF</color>
-    <color name="colorTextViewPrimay">#8D8D8D</color>
+    <color name="colorTextViewPrimary">#696969</color>
+    <color name="colorTextViewSecondary">#8D8D8D</color>
 
     <color name="white">#FFFFFF</color>
     <color name="devider">#DADADA</color>

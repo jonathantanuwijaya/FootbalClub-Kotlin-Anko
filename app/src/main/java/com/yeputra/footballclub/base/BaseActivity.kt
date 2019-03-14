@@ -4,8 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Toast
 import com.yeputra.footballclub.utils.LoadingController
+import com.yeputra.footballclub.utils.toast
 
 
 /**
@@ -41,7 +41,7 @@ abstract class BaseActivity<presenter: IBasePresenter>
 
     override fun onPresenterFailed(message: String?) {
         Log.d(TAG, "onPresenterFailed $message")
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+        toast(message?: "")
     }
 
     companion object {

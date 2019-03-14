@@ -12,6 +12,7 @@ import com.yeputra.footballclub.adapter.FavoriteAdapter
 import com.yeputra.footballclub.base.BaseFragment
 import com.yeputra.footballclub.presenter.FavoritePresenter
 import com.yeputra.footballclub.utils.INTENT_DATA
+import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.list_match.*
 
 class FavoriteFm : BaseFragment<FavoritePresenter>() {
@@ -48,6 +49,8 @@ class FavoriteFm : BaseFragment<FavoritePresenter>() {
     private fun getRepository(){
         presenter.findAll {
             matchAdapter.replaceItem(it)
+            if(it.isEmpty())
+                snackbar(getString(R.string.fav_empty))
         }
     }
 
@@ -58,7 +61,7 @@ class FavoriteFm : BaseFragment<FavoritePresenter>() {
         swipe_container.setColorSchemeColors(
             ContextCompat.getColor(getContextView(),R.color.colorPrimary),
             ContextCompat.getColor(getContextView(),R.color.colorPrimaryDark),
-            ContextCompat.getColor(getContextView(),R.color.colorTextViewPrimay),
+            ContextCompat.getColor(getContextView(),R.color.colorTextViewSecondary),
             ContextCompat.getColor(getContextView(),R.color.devider)
         )
 

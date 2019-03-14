@@ -7,7 +7,7 @@ import com.yeputra.footballclub.model.Favorite
 import org.jetbrains.anko.db.*
 
 class FavoriteDatabase(
-    private val context: Context
+    context: Context
 ): ManagedSQLiteOpenHelper (
     context,Favorite.TABLE_FAVORITE, null, 1
 ) {

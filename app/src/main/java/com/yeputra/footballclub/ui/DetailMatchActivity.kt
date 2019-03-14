@@ -20,6 +20,7 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
     private lateinit var favPresenter: FavoritePresenter
     private lateinit var event: Event
     private var isFavorite: Boolean = false
+    private var homeName = ""
 
     override fun initPresenter(): LeaguePresenter {
         favPresenter = FavoritePresenter(this)
@@ -62,19 +63,18 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
     }
 
     private fun setupContentView(data: Event){
+        data.homeTeam?.let {
+            homeName = it
+            presenter.getTeam(it)
+        }
+        data.awayTeam?.let { presenter.getTeam(it) }
+
         tv_date_match.text = data.getFormatDateEvent()
         tv_home_name.text = data.homeTeam
         tv_away_club_name.text = data.awayTeam
         tv_home_score.text = data.homeScore
         tv_away_score.text = data.awayScore
 
-        data.tumb?.let {
-            Glide.with(this)
-                .load(it)
-                .apply(RequestOptions().placeholder(R.drawable.sample))
-                .apply(RequestOptions().override(350,200))
-                .into(img_thumb)
-        }
 
         itemAdapter.addItem(Item("Goals", data.homeGoalDetail, data.awayGoalDetail))
         itemAdapter.addItem(Item("Substitutes", data.homeLineupSubstitutes, data.awayLineupSubstitutes))
@@ -98,14 +98,11 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
         }
     }
 
-    private fun loadLogoTeam(team: Team){
-    }
-
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         if(isFavorite)
             event.idEvent?.let {
                 favPresenter.delete(it){
-                    snackbar("Berasil dihapus dari favorite")
+                    snackbar(v, getString(R.string.fav_delete_successfully))
                 }
             }
         else {
@@ -117,9 +114,18 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
                 event.awayTeam,
                 event.awayScore
             )) {
-                snackbar("Berasil ditambahkan ke favorite")
+                snackbar(v, getString(R.string.fav_add_successfully))
             }
         }
         setFlagFavorite()
+    }
+
+    private fun loadLogoTeam(team: Team){
+        team.logo?.let {
+            Glide.with(this)
+                .load(it)
+                .apply(RequestOptions().placeholder(R.drawable.ic_logo_default))
+                .into(if(team.name == homeName) img_home_logo else img_away_logo)
+        }
     }
 }

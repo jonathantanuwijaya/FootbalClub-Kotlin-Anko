@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.yeputra.footballclub.utils.LoadingFragmentController
 
 
 /**
@@ -20,7 +19,6 @@ abstract class BaseFragment<presenter: IBasePresenter>
 
     private lateinit var activity: IBaseView
     protected lateinit var presenter: presenter
-    private lateinit var loading: LoadingFragmentController
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -35,15 +33,10 @@ abstract class BaseFragment<presenter: IBasePresenter>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loading = LoadingFragmentController()
         presenter = initPresenter()
     }
 
     abstract fun initPresenter(): presenter
-
-    override fun showProgressbar() = loading.showDialog()
-
-    override fun hideProgressbar() = loading.hideDialog()
 
     override fun getContextView(): Context = context!!
 

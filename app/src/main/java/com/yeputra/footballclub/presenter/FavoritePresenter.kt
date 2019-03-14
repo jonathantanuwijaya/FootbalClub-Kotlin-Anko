@@ -1,7 +1,6 @@
 package com.yeputra.footballclub.presenter
 
 import android.content.Context
-import android.util.Log
 import com.yeputra.footballclub.base.BasePresenter
 import com.yeputra.footballclub.base.IBaseView
 import com.yeputra.footballclub.model.Favorite
@@ -23,7 +22,6 @@ class FavoritePresenter(private val activity: IBaseView): BasePresenter(activity
                 Favorite.HOME_SCORE to favorite.homeScore,
                 Favorite.AWAY_NAME to favorite.awayName,
                 Favorite.AWAY_SCORE to favorite.awayScore)
-            Log.d("FAVORITE", "Status: $status")
             listener(status > -1)
         }
     }
@@ -33,7 +31,6 @@ class FavoritePresenter(private val activity: IBaseView): BasePresenter(activity
             val status = delete(Favorite.TABLE_FAVORITE,
                 Favorite.EVENT_ID + "={id}",
                 "id" to id)
-            Log.d("FAVORITE", "Status $status")
             listener(status > -1)
         }
     }

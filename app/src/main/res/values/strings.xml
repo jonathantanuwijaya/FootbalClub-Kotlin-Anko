@@ -11,5 +11,9 @@
 
     <string name="botnav_prev_match">Prev. Match</string>
     <string name="botnav_next_match">Next Match</string>
-    <string name="botnav_favorite">Favorites</string>
+    <string name="botnav_favorite">Favorites</string>'
+
+    <string name="fav_empty">Favorite event is still empty</string>
+    <string name="fav_add_successfully">This event was successfully added to the favorites list</string>
+    <string name="fav_delete_successfully">This event was successfully deleted from the favorites list</string>
 </resources>

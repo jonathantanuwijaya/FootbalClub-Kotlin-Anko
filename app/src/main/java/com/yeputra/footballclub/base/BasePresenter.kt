@@ -9,5 +9,5 @@ import android.content.Context
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
 abstract class BasePresenter(private val activity: IBaseView): IBasePresenter {
-    val contextView: Context by lazy { activity.getContextView() }
+    protected val contextView: Context by lazy { activity.getContextView() }
 }

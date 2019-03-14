@@ -63,7 +63,7 @@ abstract class BaseRecyclerViewAdapter <VH: RecyclerView.ViewHolder,T>(
         this.notifyDataSetChanged()
     }
 
-    fun appendItem(items: MutableList<T>){
+    private fun appendItem(items: MutableList<T>){
         this.items.addAll(items)
         this.notifyDataSetChanged()
     }

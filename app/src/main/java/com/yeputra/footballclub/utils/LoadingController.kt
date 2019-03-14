@@ -8,9 +8,7 @@ import com.yeputra.footballclub.R
 
 class LoadingController(private val activity: Activity) {
 
-    companion object {
-        private lateinit var dialog: Dialog
-    }
+    private lateinit var dialog: Dialog
 
     fun showDialog() {
         dialog = Dialog(activity)

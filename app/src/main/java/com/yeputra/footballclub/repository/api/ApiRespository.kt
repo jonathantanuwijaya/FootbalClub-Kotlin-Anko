@@ -1,7 +1,7 @@
 package com.yeputra.footballclub.repository.api
 
 import com.yeputra.footballclub.model.Events
-import com.yeputra.footballclub.model.Team
+import com.yeputra.footballclub.model.Teams
 import com.yeputra.footballclub.utils.BASE_URL
 import retrofit2.Call
 import retrofit2.http.GET
@@ -25,5 +25,5 @@ interface ApiRespository {
     fun getDetail(@Query("id") eventId: String): Call<Events>
 
     @GET(BASE_URL + "searchteams.php?")
-    fun getTeam(@Query("t") teamId: String): Call<Team>
+    fun getTeam(@Query("t") teamId: String): Call<Teams>
 }

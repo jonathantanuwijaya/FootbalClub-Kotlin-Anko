@@ -14,4 +14,10 @@
     <dimen name="tv_big">14sp</dimen>
 
     <dimen name="devider">1dp</dimen>
+
+    <dimen name="logo_height">110dp</dimen>
+    <dimen name="logo_width">100dp</dimen>
+
+    <dimen name="card_radius">2dp</dimen>
+    <dimen name="card_elevation">1dp</dimen>
 </resources>

@@ -17,7 +17,7 @@
 
     <!-- COMPONENT -->
     <style name="TextView" parent="android:TextAppearance">
-        <item name="android:textColor">@color/colorTextViewPrimay</item>
+        <item name="android:textColor">@color/colorTextViewSecondary</item>
         <item name="android:gravity">left</item>
     </style>
 
@@ -40,6 +40,10 @@
 
     <style name="TextView.DoubleExtraBig" parent="TextView">
         <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="TextView.MultiExtraBig" parent="TextView">
+        <item name="android:textSize">46sp</item>
     </style>
 
     <!--___________ TEXT BOLD ___________-->
