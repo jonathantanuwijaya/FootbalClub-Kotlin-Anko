@@ -37,6 +37,7 @@ abstract class BaseRecyclerViewAdapter <VH: RecyclerView.ViewHolder,T>(
             }
 
             override fun publishResults(constraint: CharSequence, results: Filter.FilterResults) {
+                @Suppress("UNCHECKED_CAST")
                 items = results.values as MutableList<T>
                 notifyDataSetChanged()
                 isSearching = false

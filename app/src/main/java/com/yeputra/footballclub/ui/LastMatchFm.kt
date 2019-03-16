@@ -17,6 +17,13 @@ import com.yeputra.footballclub.utils.league
 import kotlinx.android.synthetic.main.list_match.*
 
 class LastMatchFm : BaseFragment<LeaguePresenter>() {
+    companion object {
+        private var instance: LastMatchFm? = null
+
+        @Synchronized
+        fun getInstance(): LastMatchFm =
+            instance?.let { it }?: run { LastMatchFm() }
+    }
 
     private lateinit var matchAdapter: MatchAdapter
 

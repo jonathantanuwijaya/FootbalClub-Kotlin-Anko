@@ -27,6 +27,11 @@ abstract class BaseActivity<presenter: IBasePresenter>
         loading = LoadingController(this)
     }
 
+    override fun onDestroy() {
+        presenter.onDestroyPresenter()
+        super.onDestroy()
+    }
+
     abstract fun initPresenter(): presenter
 
     override fun getContextView(): Context = this

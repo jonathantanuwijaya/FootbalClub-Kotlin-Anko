@@ -48,20 +48,17 @@ dependencies {
 
     /* Network */
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-
-    // Retrofit : convert for Gson
+    /* Retrofit : convert for Gson */
     implementation "com.squareup.retrofit2:converter-gson:2.3.0"
-    //retrofit : rx
-    /*implementation "com.squareup.retrofit2:converter-scalars:2.3.0"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"*/
-    // retrofit : okhttp
+    /* retrofit : rx */
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+    /* Rx */
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+
+    /* retrofit : okhttp */
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-    // Rx
-    /*implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'*/
-
     /* Anko SQLite */
     implementation "org.jetbrains.anko:anko-sqlite:0.10.8"
-
 }

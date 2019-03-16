@@ -18,7 +18,7 @@ class MainActivity : BaseActivity<LeaguePresenter>() {
         button_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.menu_prev_match -> {
-                    changeTo(R.id.main_container, LastMatchFm())
+                    changeTo(R.id.main_container, LastMatchFm.getInstance())
                 }
                 R.id.menu_next_match -> {
                     changeTo(R.id.main_container, NextMatchFm())

@@ -6,4 +6,6 @@ package com.yeputra.footballclub.base
  *    on 09/Mar/2019 10:57
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
-interface IBasePresenter
+interface IBasePresenter {
+    fun onDestroyPresenter()
+}

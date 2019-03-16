@@ -15,5 +15,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            android:id="@+id/progressBar"/>
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="@dimen/margin_extra_big"
+            android:layout_height="@dimen/margin_extra_big"
+            app:elevation="0dp"
+            app:backgroundTint="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/progressBar" app:layout_constraintEnd_toEndOf="@+id/progressBar"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/progressBar">
+    </android.support.design.widget.FloatingActionButton>
 </android.support.constraint.ConstraintLayout>

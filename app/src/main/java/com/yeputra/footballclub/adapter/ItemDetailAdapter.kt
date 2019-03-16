@@ -28,10 +28,11 @@ class ItemDetailAdapter(
             tv_title.text = detail.title
             tv_home_detail.text = parsing(detail.home)
             tv_away_detail.text = parsing(detail.away)
+
         }
 
         private fun parsing(data: String?): String =
-            data?.replace(";","\n")?.trim() ?: run{""}
+            data?.replace(";","\n")?.trim() ?: run{"-"}
     }
 
 }

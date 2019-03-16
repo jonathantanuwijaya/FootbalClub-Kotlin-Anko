@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yeputra.footballclub.base.BaseRecyclerViewAdapter
 import com.yeputra.footballclub.R
+import com.yeputra.footballclub.base.BaseRecyclerViewAdapter
 import com.yeputra.footballclub.model.Event
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.items_match.*

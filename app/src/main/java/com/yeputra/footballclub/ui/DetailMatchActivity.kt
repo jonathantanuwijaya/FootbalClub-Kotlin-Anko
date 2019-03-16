@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_detail_match.*
 class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListener {
     private lateinit var itemAdapter: ItemDetailAdapter
     private lateinit var favPresenter: FavoritePresenter
-    private lateinit var event: Event
+    private var event: Event? = null
     private var isFavorite: Boolean = false
     private var homeName = ""
 
@@ -72,22 +72,23 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
         tv_date_match.text = data.getFormatDateEvent()
         tv_home_name.text = data.homeTeam
         tv_away_club_name.text = data.awayTeam
-        tv_home_score.text = data.homeScore
-        tv_away_score.text = data.awayScore
+
+        tv_home_score.text = if(data.homeScore.isNullOrEmpty()) "0" else data.homeScore
+        tv_away_score.text = if(data.awayScore.isNullOrEmpty()) "0" else data.awayScore
 
 
-        itemAdapter.addItem(Item("Goals", data.homeGoalDetail, data.awayGoalDetail))
-        itemAdapter.addItem(Item("Substitutes", data.homeLineupSubstitutes, data.awayLineupSubstitutes))
-        itemAdapter.addItem(Item("Goal Keeper", data.homeLineupGoalkeeper, data.awayLineupGoalkeeper))
-        itemAdapter.addItem(Item("Defense", data.homeLineupDefense, data.awayLineupDefense))
-        itemAdapter.addItem(Item("Forward", data.homeLineupForward, data.awayLineupForward))
-        itemAdapter.addItem(Item("Midfield", data.homeLineupMidfield, data.awayLineupMidfield))
-        itemAdapter.addItem(Item("Yellow Card", data.homeYellowCards, data.awayYellowCards))
-        itemAdapter.addItem(Item("Red Card", data.homeRedCards, data.awayRedCards))
+        itemAdapter.addItem(Item("GOALS", data.homeGoalDetail, data.awayGoalDetail))
+        itemAdapter.addItem(Item("SUBSTITUTES", data.homeLineupSubstitutes, data.awayLineupSubstitutes))
+        itemAdapter.addItem(Item("GOAL KEEPER", data.homeLineupGoalkeeper, data.awayLineupGoalkeeper))
+        itemAdapter.addItem(Item("DEFENSE", data.homeLineupDefense, data.awayLineupDefense))
+        itemAdapter.addItem(Item("FORWARD", data.homeLineupForward, data.awayLineupForward))
+        itemAdapter.addItem(Item("MIDFIELD", data.homeLineupMidfield, data.awayLineupMidfield))
+        itemAdapter.addItem(Item("YELLOW CARD", data.homeYellowCards, data.awayYellowCards))
+        itemAdapter.addItem(Item("RED CARD", data.homeRedCards, data.awayRedCards))
     }
 
     private fun setFlagFavorite(){
-        event.idEvent?.let {
+        event?.idEvent?.let {
             favPresenter.findOne(it)?.let {
                 isFavorite = true
                 bt_favorite.setImageResource(R.drawable.ic_favorite_selected)
@@ -99,25 +100,25 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
     }
 
     override fun onClick(v: View) {
-        if(isFavorite)
-            event.idEvent?.let {
-                favPresenter.delete(it){
-                    snackbar(v, getString(R.string.fav_delete_successfully))
+        event?.let {
+            if(isFavorite)
+                favPresenter.delete(it.idEvent.toString()){
+                    snackbar(getString(R.string.fav_delete_successfully))
+                }
+            else {
+                favPresenter.add(Favorite(
+                    it.idEvent,
+                    it.getFormatDateEvent(),
+                    it.homeTeam,
+                    it.homeScore,
+                    it.awayTeam,
+                    it.awayScore
+                )) {
+                    snackbar(getString(R.string.fav_add_successfully))
                 }
             }
-        else {
-            favPresenter.add(Favorite(
-                event.idEvent,
-                event.getFormatDateEvent(),
-                event.homeTeam,
-                event.homeScore,
-                event.awayTeam,
-                event.awayScore
-            )) {
-                snackbar(v, getString(R.string.fav_add_successfully))
-            }
+            setFlagFavorite()
         }
-        setFlagFavorite()
     }
 
     private fun loadLogoTeam(team: Team){
