@@ -38,7 +38,7 @@ abstract class BaseFragment<presenter: IBasePresenter>
 
     abstract fun initPresenter(): presenter
 
-    override fun getContextView(): Context = context!!
+    override fun getContextView(): Context = context as Context
 
     override fun onPresenterSuccess(data: Any?) {
         Log.d(TAG, "onPresenterSuccess")
