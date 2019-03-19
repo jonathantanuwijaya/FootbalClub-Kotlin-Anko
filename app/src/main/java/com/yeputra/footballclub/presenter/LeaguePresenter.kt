@@ -84,4 +84,17 @@ class LeaguePresenter(
         )
     }
 
+    fun searchEvent(eventName: String){
+        subscriber = api.searchEvent(eventName)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(
+                {
+                    v.onPresenterSuccess(it)
+                },
+                {
+                    v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
+                }
+            )
+    }
+
 }

@@ -75,3 +75,7 @@ data class Event(
 data class Events(
     val events: MutableList<Event>?
 )
+
+data class SearchEvent(
+    val event: MutableList<Event>?
+)

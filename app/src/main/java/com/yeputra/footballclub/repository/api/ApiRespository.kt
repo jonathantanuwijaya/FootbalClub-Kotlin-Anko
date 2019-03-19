@@ -1,6 +1,7 @@
 package com.yeputra.footballclub.repository.api
 
 import com.yeputra.footballclub.model.Events
+import com.yeputra.footballclub.model.SearchEvent
 import com.yeputra.footballclub.model.Teams
 import com.yeputra.footballclub.utils.BASE_URL
 import io.reactivex.Observable
@@ -24,6 +25,9 @@ interface ApiRespository {
     @GET(BASE_URL + "lookupevent.php")
     fun getDetail(@Query("id") eventId: String): Observable<Events>
 
-    @GET(BASE_URL + "searchteams.php?")
+    @GET(BASE_URL + "searchteams.php")
     fun getTeam(@Query("t") teamId: String): Observable<Teams>
+
+    @GET(BASE_URL + "searchevents.php")
+    fun searchEvent(@Query("e") eventName: String): Observable<SearchEvent>
 }

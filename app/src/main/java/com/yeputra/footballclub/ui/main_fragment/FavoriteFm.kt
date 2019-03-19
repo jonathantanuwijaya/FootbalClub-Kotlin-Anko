@@ -1,4 +1,4 @@
-package com.yeputra.footballclub.ui
+package com.yeputra.footballclub.ui.main_fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.FavoriteAdapter
 import com.yeputra.footballclub.base.BaseFragment
 import com.yeputra.footballclub.presenter.FavoritePresenter
+import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.list_match.*
