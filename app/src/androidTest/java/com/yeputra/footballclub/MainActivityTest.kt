@@ -29,7 +29,7 @@ class MainActivityTest {
 
 
     @Test
-    fun onEachButtonNavigationClick(){
+    fun onEachButtonNavigationClickTest(){
         onView(withId(R.id.menu_prev_match)).perform(click())
         Thread.sleep(1000)
 
@@ -41,7 +41,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun onDetailsEvent(){
+    fun onDetailsEventTest(){
         val menu = arrayOf(R.id.menu_prev_match, R.id.menu_next_match, R.id.menu_favorites)
 
         for(m in menu){
@@ -61,7 +61,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun onAddRemoveMainEventToFavorite(){
+    fun onAddMainEventToFavoriteTest(){
         val menu = arrayOf(R.id.menu_prev_match, R.id.menu_next_match, R.id.menu_favorites)
         for(m in menu){
             onView(withId(m)).perform(click())
@@ -83,7 +83,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun onAddResultSearchEventToFavorite() {
+    fun onAddResultSearchEventToFavoriteTest() {
         val club = "Barchelona"
         Thread.sleep(1000)
 
@@ -92,17 +92,17 @@ class MainActivityTest {
         Espresso.closeSoftKeyboard()
         Thread.sleep(1000)
 
-        onView(withId(R.id.rv_match)).perform(
-            scrollToPosition<RecyclerView.ViewHolder>(15)
-        )
-        Thread.sleep(500)
-
-        onView(withId(R.id.rv_match)).perform(
-            scrollToPosition<RecyclerView.ViewHolder>(0)
-        )
-        Thread.sleep(500)
-
         try{
+            onView(withId(R.id.rv_match)).perform(
+                scrollToPosition<RecyclerView.ViewHolder>(15)
+            )
+            Thread.sleep(500)
+
+            onView(withId(R.id.rv_match)).perform(
+                scrollToPosition<RecyclerView.ViewHolder>(0)
+            )
+            Thread.sleep(500)
+
             onView(withId(R.id.rv_match)).perform(
                 actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
             )
@@ -110,6 +110,24 @@ class MainActivityTest {
             Thread.sleep(100)
         }catch (e: Exception){
             Log.e(MainActivity::class.java.simpleName, "Data kosong")
+        }
+    }
+
+    @Test
+    fun onRemoveEventFavoriteTest(){
+        onView(withId(R.id.menu_favorites)).perform(click())
+        Thread.sleep(500)
+
+        try{
+            onView(withId(R.id.rv_match)).perform(
+                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+            )
+            Thread.sleep(500)
+            onView(withId(R.id.bt_favorite)).perform(click())
+            Thread.sleep(500)
+            Espresso.pressBack()
+        }catch (e: Exception) {
+            Log.e(MainActivity::class.java.simpleName, "Data kosong!")
         }
     }
 
