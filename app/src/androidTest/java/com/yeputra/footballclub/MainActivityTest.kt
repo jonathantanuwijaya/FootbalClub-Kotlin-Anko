@@ -62,7 +62,7 @@ class MainActivityTest {
 
     @Test
     fun onAddMainEventToFavoriteTest(){
-        val menu = arrayOf(R.id.menu_prev_match, R.id.menu_next_match, R.id.menu_favorites)
+        val menu = arrayOf(R.id.menu_prev_match, R.id.menu_next_match)
         for(m in menu){
             onView(withId(m)).perform(click())
             Thread.sleep(500)
