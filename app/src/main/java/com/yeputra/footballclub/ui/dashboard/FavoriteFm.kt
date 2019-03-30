@@ -1,4 +1,4 @@
-package com.yeputra.footballclub.ui.main_fragment
+package com.yeputra.footballclub.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle

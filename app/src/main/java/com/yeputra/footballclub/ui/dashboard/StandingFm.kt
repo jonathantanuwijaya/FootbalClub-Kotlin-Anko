@@ -1,4 +1,4 @@
-package com.yeputra.footballclub.ui.main_fragment
+package com.yeputra.footballclub.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,16 +15,16 @@ import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.league
-import kotlinx.android.synthetic.main.list_match.*
+import kotlinx.android.synthetic.main.fragment_standing.*
 
-class LastMatchFm : BaseFragment<LeaguePresenter>() {
+class StandingFm : BaseFragment<LeaguePresenter>() {
     private lateinit var matchAdapter: MatchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) : View? = inflater.inflate(R.layout.list_match,container,false)
+    ) : View? = inflater.inflate(R.layout.fragment_standing,container,false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

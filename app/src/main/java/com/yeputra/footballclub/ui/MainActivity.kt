@@ -8,10 +8,10 @@ import android.view.MenuItem
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.base.BaseToolbarActivity
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.ui.main_fragment.FavoriteFm
-import com.yeputra.footballclub.ui.main_fragment.LastMatchFm
-import com.yeputra.footballclub.ui.main_fragment.NextMatchFm
-import com.yeputra.footballclub.ui.main_fragment.StandingFm
+import com.yeputra.footballclub.ui.dashboard.FavoriteFm
+import com.yeputra.footballclub.ui.dashboard.MatchsFm
+import com.yeputra.footballclub.ui.dashboard.StandingFm
+import com.yeputra.footballclub.ui.match.NextMatchFm
 import com.yeputra.footballclub.ui.search.SearchActivity
 import com.yeputra.footballclub.utils.changeTo
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,10 +34,10 @@ class MainActivity : BaseToolbarActivity<LeaguePresenter>() {
                     changeTo(R.id.main_container, StandingFm())
                 }
                 R.id.menu_match -> {
-                    changeTo(R.id.main_container, NextMatchFm())
+                    changeTo(R.id.main_container, MatchsFm())
                 }
                 R.id.menu_teams -> {
-                    changeTo(R.id.main_container, LastMatchFm())
+                    changeTo(R.id.main_container, NextMatchFm())
                 }
                 R.id.menu_favorites -> {
                     changeTo(R.id.main_container, FavoriteFm())
