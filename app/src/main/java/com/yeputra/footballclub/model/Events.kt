@@ -72,10 +72,10 @@ data class Event(
 }
 
 
-data class Events(
+data class EventsResponse(
     val events: MutableList<Event>?
 )
 
-data class SearchEvent(
+data class SearchMatchResponse(
     val event: MutableList<Event>?
 )

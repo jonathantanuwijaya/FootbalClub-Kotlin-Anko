@@ -1,7 +1,7 @@
 package com.yeputra.footballclub
 
 import com.yeputra.footballclub.base.IBaseView
-import com.yeputra.footballclub.model.Events
+import com.yeputra.footballclub.model.EventsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.utils.league
 import org.junit.Before
@@ -24,7 +24,7 @@ class LeaguePresenterTest {
     @Mock
     private lateinit var view: IBaseView
     @Mock
-    private lateinit var events: Events
+    private lateinit var events: EventsResponse
 
     @Captor
     private lateinit var listener: ArgumentCaptor<IBaseView>

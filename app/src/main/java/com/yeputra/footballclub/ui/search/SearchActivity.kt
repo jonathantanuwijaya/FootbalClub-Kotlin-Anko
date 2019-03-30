@@ -9,7 +9,7 @@ import com.jakewharton.rxbinding.widget.RxTextView
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.MatchAdapter
 import com.yeputra.footballclub.base.BaseToolbarActivity
-import com.yeputra.footballclub.model.SearchEvent
+import com.yeputra.footballclub.model.SearchMatchResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
@@ -48,7 +48,7 @@ class SearchActivity : BaseToolbarActivity<LeaguePresenter>() {
     override fun onPresenterSuccess(data: Any?) {
         super.onPresenterSuccess(data)
         when(data){
-            is SearchEvent -> {
+            is SearchMatchResponse -> {
                 data.event?.let { matchAdapter.replaceItem(it) }
             }
         }

@@ -16,6 +16,6 @@ data class Team (
     val website: String?
 )
 
-data class Teams (
+data class TeamsResponse (
     val teams: MutableList<Team>?
 )

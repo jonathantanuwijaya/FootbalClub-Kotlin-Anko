@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.MatchAdapter
 import com.yeputra.footballclub.base.BaseFragment
-import com.yeputra.footballclub.model.Events
+import com.yeputra.footballclub.model.EventsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
@@ -61,7 +61,7 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
         super.onPresenterSuccess(data)
 
         when(data){
-            is Events ->
+            is EventsResponse ->
                 data.events?.let { matchAdapter.replaceItem(it) }
         }
     }

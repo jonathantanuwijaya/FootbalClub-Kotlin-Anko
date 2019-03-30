@@ -2,22 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_prev_match"
-        android:enabled="true"
-        android:title="@string/botnav_prev_match"
-        android:icon="@drawable/ic_match"
-        app:showAsAction="ifRoom"/>
+            android:id="@+id/menu_standing"
+            android:enabled="true"
+            android:title="@string/lbl_standings"
+            android:icon="@drawable/ic_standings"
+            app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menu_next_match"
-        android:enabled="true"
-        android:title="@string/botnav_next_match"
-        android:icon="@drawable/ic_date"
-        app:showAsAction="ifRoom"/>
+            android:id="@+id/menu_match"
+            android:enabled="true"
+            android:title="@string/botnav_match"
+            android:icon="@drawable/ic_date"
+            app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/menu_favorites"
-        android:enabled="true"
-        android:icon="@drawable/ic_favorite"
-        android:title="@string/botnav_favorite"
-        app:showAsAction="ifRoom" />
+            android:id="@+id/menu_teams"
+            android:enabled="true"
+            android:title="@string/lbl_teams"
+            android:icon="@drawable/ic_teams"
+            app:showAsAction="ifRoom"/>
+
+    <item
+            android:id="@+id/menu_favorites"
+            android:enabled="true"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/botnav_favorite"
+            app:showAsAction="ifRoom" />
 </menu>

@@ -11,6 +11,7 @@
 
     <string name="menu_search">Search Events</string>
 
+    <string name="botnav_match">Match</string>
     <string name="botnav_prev_match">Prev. Match</string>
     <string name="botnav_next_match">Next Match</string>
     <string name="botnav_favorite">Favorites</string>
@@ -18,4 +19,18 @@
     <string name="fav_empty">Favorite event is still empty</string>
     <string name="fav_add_successfully">This event was successfully added to the favorites list</string>
     <string name="fav_delete_successfully">This event was successfully deleted from the favorites list</string>
+
+    <!-- TEAM -->
+    <string name="lbl_teams">Teams</string>
+
+    <!-- STANDING -->
+    <string name="lbl_standings">Standings</string>
+    <string name="lbl_number">#</string>
+    <string name="lbl_team">Team</string>
+    <string name="lbl_played">Pl</string>
+    <string name="lbl_win">W</string>
+    <string name="lbl_draw">D</string>
+    <string name="lbl_loss">L</string>
+    <string name="lbl_goaldif">GD</string>
+    <string name="lbl_point">Pts</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.yeputra.footballclub.presenter
 
-import com.yeputra.footballclub.R
 import com.yeputra.footballclub.base.BasePresenter
 import com.yeputra.footballclub.base.IBaseView
 import com.yeputra.footballclub.repository.api.ApiRespository
@@ -23,78 +22,64 @@ class LeaguePresenter(
             .create(ApiRespository::class.java)
     }
 
+    fun getStanding(leagueId: String){
+        v.showProgressbar()
+        subscriber = api.getStandings(leagueId)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
+    fun getTeams(leagueId: String){
+        v.showProgressbar()
+        subscriber = api.getTeams(leagueId)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
+    fun getTeam(teamId: String){
+        subscriber = api.getTeam(teamId)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
+    fun getPlayers(teamId: String){
+        subscriber = api.getPlayers(teamId)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
+    fun getPlayer(playerId: String){
+        subscriber = api.getPlayer(playerId)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
     fun getLastMatch(leagueId: String){
         v.showProgressbar()
         subscriber = api.getLastMatch(leagueId)
             .compose(RxUtils.applyObservableAsync())
-            .subscribe(
-            {
-                v.hideProgressbar()
-                v.onPresenterSuccess(it)
-            },
-            {
-                v.hideProgressbar()
-                v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
-            }
-        )
+            .subscribe(onSuccess(), onFailed())
     }
 
     fun getNextMatch(leagueId: String){
         v.showProgressbar()
         subscriber = api.getNextMatch(leagueId)
             .compose(RxUtils.applyObservableAsync())
-            .subscribe(
-            {
-                v.hideProgressbar()
-                v.onPresenterSuccess(it)
-            },
-            {
-                v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
-                v.hideProgressbar()
-            }
-        )
+            .subscribe(onSuccess(), onFailed())
     }
 
     fun getDetail(eventId: String) {
         v.showProgressbar()
-        subscriber = api.getDetail(eventId)
+        subscriber = api.getMatch(eventId)
             .compose(RxUtils.applyObservableAsync())
-            .subscribe(
-                {
-                    v.onPresenterSuccess(it)
-                    v.hideProgressbar()
-                },
-                {
-                    v.hideProgressbar()
-                    v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
-                }
-            )
+            .subscribe(onSuccess(), onFailed())
     }
 
-    fun getTeam(teamId: String){
-        subscriber = api.getTeam(teamId)
-            .compose(RxUtils.applyObservableAsync())
-            .subscribe(
-            {
-                v.onPresenterSuccess(it.teams?.get(0))
-            },
-            {
-                v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
-            }
-        )
-    }
 
     fun searchEvent(eventName: String){
-        subscriber = api.searchEvent(eventName)
+        subscriber = api.searchMatch(eventName)
             .compose(RxUtils.applyObservableAsync())
-            .subscribe(
-                {
-                    v.onPresenterSuccess(it)
-                },
-                {
-                    v.onPresenterFailed(contextView.getString(R.string.no_internet_connection))
-                }
-            )
+            .subscribe(onSuccess(), onFailed())
     }
 
 }

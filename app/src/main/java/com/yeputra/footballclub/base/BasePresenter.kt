@@ -1,7 +1,9 @@
 package com.yeputra.footballclub.base
 
 import android.content.Context
+import com.yeputra.footballclub.R
 import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Consumer
 
 
 /**
@@ -17,4 +19,22 @@ abstract class BasePresenter(private val activity: IBaseView): IBasePresenter {
     override fun onDestroyPresenter() {
         subscriber?.dispose()
     }
+
+    class onSucess<Data>(val view: IBaseView): Consumer<Data> {
+        override fun accept(t: Data) {
+
+        }
+    }
+
+    fun onSuccess():Consumer<Any> =
+        Consumer{
+            activity.onPresenterSuccess(it)
+            activity.hideProgressbar()
+        }
+
+    fun onFailed():Consumer<Any> =
+        Consumer{
+            activity.hideProgressbar()
+            activity.onPresenterFailed(activity.getContextView().getString(R.string.no_internet_connection))
+        }
 }

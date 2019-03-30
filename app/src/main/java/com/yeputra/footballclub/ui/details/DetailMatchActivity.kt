@@ -46,7 +46,7 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
     override fun onPresenterSuccess(data: Any?) {
         super.onPresenterSuccess(data)
         when(data){
-            is Events -> {
+            is EventsResponse -> {
                 data.events?.get(0)?.let {
                     this.event = it
                     setupContentView(it)
