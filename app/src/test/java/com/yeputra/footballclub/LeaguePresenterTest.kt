@@ -2,12 +2,13 @@ package com.yeputra.footballclub
 
 import com.yeputra.footballclub.base.IBaseView
 import com.yeputra.footballclub.model.EventsResponse
+import com.yeputra.footballclub.model.PlayersResponse
+import com.yeputra.footballclub.model.StandingsResponse
+import com.yeputra.footballclub.model.TeamsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.utils.league
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentCaptor
-import org.mockito.Captor
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
@@ -23,11 +24,18 @@ class LeaguePresenterTest {
 
     @Mock
     private lateinit var view: IBaseView
+
+    @Mock
+    private lateinit var standingsResponse: StandingsResponse
+
     @Mock
     private lateinit var events: EventsResponse
 
-    @Captor
-    private lateinit var listener: ArgumentCaptor<IBaseView>
+    @Mock
+    private lateinit var teamsResponse: TeamsResponse
+
+    @Mock
+    private lateinit var playersResponse: PlayersResponse
 
     @Before
     fun setup(){
@@ -35,8 +43,35 @@ class LeaguePresenterTest {
         presenter = LeaguePresenter(view)
 
         spy(view.showProgressbar())
+        spy(view.onPresenterSuccess(standingsResponse))
         spy(view.onPresenterSuccess(events))
+        spy(view.onPresenterSuccess(teamsResponse))
+        spy(view.onPresenterSuccess(playersResponse))
         spy(view.hideProgressbar())
+    }
+
+    @Test
+    fun getStandingTest() {
+        presenter.getStanding(league)
+        verify(view, times(2)).showProgressbar()
+        verify(view, times(1)).onPresenterSuccess(standingsResponse)
+        verify(view, times(1)).hideProgressbar()
+    }
+
+    @Test
+    fun getTeamsTest() {
+        presenter.getTeams(league)
+        verify(view, times(2)).showProgressbar()
+        verify(view, times(1)).onPresenterSuccess(teamsResponse)
+        verify(view, times(1)).hideProgressbar()
+    }
+
+    @Test
+    fun getPlayersTest() {
+        presenter.getPlayers("133599")
+        verify(view, times(2)).showProgressbar()
+        verify(view, times(1)).onPresenterSuccess(playersResponse)
+        verify(view, times(1)).hideProgressbar()
     }
 
     @Test
