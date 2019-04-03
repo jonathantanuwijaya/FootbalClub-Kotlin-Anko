@@ -49,7 +49,7 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
         swipe_container.setColorSchemeColors(
             ContextCompat.getColor(getContextView(),R.color.colorPrimary),
             ContextCompat.getColor(getContextView(),R.color.colorPrimaryDark),
-            ContextCompat.getColor(getContextView(),R.color.colorTextViewSecondary),
+            ContextCompat.getColor(getContextView(),R.color.colorAccent),
             ContextCompat.getColor(getContextView(),R.color.devider)
         )
 
