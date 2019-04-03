@@ -35,7 +35,8 @@
                 android:id="@+id/img_photo"
                 android:layout_width="@dimen/photo_size"
                 android:layout_height="@dimen/photo_size"
-                android:src="@drawable/ic_player"/>
+                android:src="@drawable/ic_player"
+                android:contentDescription="@string/description"/>
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="India"
+                    android:text="@string/description"
                     android:drawableStart="@drawable/ic_nationality"/>
         </LinearLayout>
     </LinearLayout>
@@ -70,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_small">
+            android:padding="@dimen/margin_small" android:baselineAligned="false">
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -83,11 +84,12 @@
                     android:src="@drawable/ic_birthday"
                     android:id="@+id/imageView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/description"/>
             <TextView
                     android:id="@+id/tv_birthdate_location"
                     style="@style/TextView.Small"
-                    android:text="12-Mar-1993"
+                    android:text="@string/val_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
@@ -95,7 +97,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                    android:text="Male"
+                    android:text="@string/description"
                     style="@style/TextView.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,6 +113,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:id="@+id/imageView2"
                     android:layout_marginTop="@dimen/margin_medium"
+                    android:contentDescription="@string/description"
                     app:layout_constraintTop_toBottomOf="@+id/tv_gender"/>
 
             <TextView
@@ -118,7 +121,7 @@
                     style="@style/TextView.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="W : 5Kg"
+                    android:text="@string/description"
                     android:layout_marginTop="@dimen/margin_medium"
                     app:layout_constraintTop_toBottomOf="@+id/tv_gender"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -129,7 +132,7 @@
                     style="@style/TextView.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="H : 170cm"
+                    android:text="@string/description"
                     app:layout_constraintTop_toBottomOf="@+id/tv_wage"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
                     android:layout_marginStart="@dimen/margin_small"/>
@@ -146,11 +149,12 @@
                     android:src="@drawable/ic_teams"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/imageView3"/>
+                    android:id="@+id/imageView3"
+                    android:contentDescription="@string/description"/>
             <TextView
                     android:id="@+id/tv_team_name"
                     style="@style/TextView.Small"
-                    android:text="Madrid"
+                    android:text="@string/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
@@ -159,7 +163,7 @@
 
             <TextView
                     android:id="@+id/tv_posisiton"
-                    android:text="Defence"
+                    android:text="@string/description"
                     style="@style/TextView.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -169,7 +173,7 @@
 
             <TextView
                     android:id="@+id/tv_date_signed"
-                    android:text="01-Feb-2019"
+                    android:text="@string/val_date"
                     style="@style/TextView.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

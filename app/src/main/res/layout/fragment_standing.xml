@@ -44,7 +44,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/lbl_number"
                                 android:layout_weight="1.02"
-                                android:gravity="right"
+                                android:gravity="end"
                                 android:textColor="@color/white"
                                 android:padding="@dimen/margin_double_extra_small"/>
                         <TextView

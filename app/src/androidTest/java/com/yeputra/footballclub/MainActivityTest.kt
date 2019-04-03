@@ -11,10 +11,14 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import com.yeputra.footballclub.ui.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import android.support.test.espresso.IdlingRegistry
+import org.junit.Before
+import android.support.test.espresso.IdlingResource
+import com.yeputra.footballclub.ui.MainActivity
+import org.junit.After
 
 
 /**
@@ -24,9 +28,34 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
+
     @Rule
     @JvmField var activity = ActivityTestRule(MainActivity::class.java)
 
+    private var mIdlingResource: IdlingResource? = null
+
+
+    /**
+     * Use [to launch and get access to the activity.][ActivityScenario.onActivity]
+     */
+    @Before
+    fun registerIdlingResource() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        activityScenario.onActivity(object : ActivityScenario.ActivityAction<MainActivity>() {
+            fun perform(activity: MainActivity) {
+                mIdlingResource = activity.getIdlingResource()
+                // To prove that the test fails, omit this call:
+                IdlingRegistry.getInstance().register(mIdlingResource!!)
+            }
+        })
+    }
+
+    @After
+    fun unregisterIdlingResource() {
+        if (mIdlingResource != null) {
+            IdlingRegistry.getInstance().unregister(mIdlingResource)
+        }
+    }
 
     @Test
     fun onEachButtonNavigationClickTest(){
@@ -109,7 +138,7 @@ class MainActivityTest {
             onView(withId(R.id.bt_favorite)).perform(click())
             Thread.sleep(100)
         }catch (e: Exception){
-            Log.e(MainActivity::class.java.simpleName, "Data kosong")
+            Log.e(MainActivityTest::class.java.simpleName, "Data kosong")
         }
     }
 
@@ -160,5 +189,9 @@ class MainActivityTest {
             Thread.sleep(500)
             onView(withId(R.id.et_finder)).perform(clearText())
         }
+    }
+
+    companion object {
+        private const val TAG: String = "MainActivityTest"
     }
 }

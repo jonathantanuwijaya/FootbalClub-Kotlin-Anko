@@ -6,25 +6,25 @@
             android:enabled="true"
             android:title="@string/lbl_standings"
             android:icon="@drawable/ic_standings"
-            app:showAsAction="ifRoom"/>
+            app:showAsAction="always"/>
     <item
             android:id="@+id/menu_match"
             android:enabled="true"
             android:title="@string/botnav_match"
             android:icon="@drawable/ic_date"
-            app:showAsAction="ifRoom"/>
+            app:showAsAction="always"/>
 
     <item
             android:id="@+id/menu_teams"
             android:enabled="true"
             android:title="@string/lbl_teams"
             android:icon="@drawable/ic_teams"
-            app:showAsAction="ifRoom"/>
+            app:showAsAction="always"/>
 
     <item
             android:id="@+id/menu_favorites"
             android:enabled="true"
             android:icon="@drawable/ic_favorite"
             android:title="@string/botnav_favorite"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always" />
 </menu>

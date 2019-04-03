@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/val_date"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorAccent"/>
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -49,6 +49,7 @@
                     <TextView
                             android:id="@+id/tv_home_name"
                             style="@style/TextView.Medium"
+                            android:textColor="@color/colorPrimary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/home"
@@ -57,6 +58,7 @@
                     <TextView
                             android:id="@+id/tv_home_score"
                             style="@style/TextView.ExtraBigBold"
+                            android:textColor="@color/colorPrimaryDark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_small"
@@ -77,7 +79,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/vs"
-                            android:textAlignment="center"/>
+                            android:textAlignment="center"
+                            android:textColor="@color/colorAccent"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -90,6 +93,7 @@
                     <TextView
                             android:id="@+id/tv_away_score"
                             style="@style/TextView.ExtraBigBold"
+                            android:textColor="@color/colorPrimaryDark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
@@ -100,6 +104,7 @@
                     <TextView
                             android:id="@+id/tv_away_name"
                             style="@style/TextView.Medium"
+                            android:textColor="@color/colorPrimary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/away"

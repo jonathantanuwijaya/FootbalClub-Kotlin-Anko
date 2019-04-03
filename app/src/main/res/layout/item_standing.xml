@@ -25,6 +25,7 @@
                 style="@style/TextView.MediumBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/lbl_team"
                 android:padding="@dimen/margin_double_extra_small"
                 android:layout_weight="0.7"/>
