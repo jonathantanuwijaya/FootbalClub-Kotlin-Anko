@@ -44,7 +44,7 @@ class StandingsAdapter(
             tv_win.text = standing.win.toString()
             tv_draw.text = standing.draw.toString()
             tv_loss.text = standing.loss.toString()
-            tv_goalsdif.text = standing.goalsdifference.toString()
+            tv_goalsdif.text = standing.goalsDifference.toString()
             tv_points.text = standing.total.toString()
 
             containerView.setOnClickListener { listener(standing) }

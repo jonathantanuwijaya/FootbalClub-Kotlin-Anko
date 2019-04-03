@@ -10,9 +10,9 @@ import com.yeputra.footballclub.model.Item
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_match_detail.*
 
-class ItemDetailAdapter(
+class MatchDetailAdapter(
     items: MutableList<Item>
-): BaseRecyclerViewAdapter<ItemDetailAdapter.VHolder, Item>(items) {
+): BaseRecyclerViewAdapter<MatchDetailAdapter.VHolder, Item>(items) {
 
     override fun onBindViewHolder(holder: VHolder, item: Item, position: Int) =
         holder.binding(item)

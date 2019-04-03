@@ -6,7 +6,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.ItemDetailAdapter
+import com.yeputra.footballclub.adapter.MatchDetailAdapter
 import com.yeputra.footballclub.base.BaseActivity
 import com.yeputra.footballclub.model.*
 import com.yeputra.footballclub.presenter.LeaguePresenter
@@ -16,7 +16,7 @@ import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.activity_detail_match.*
 
 class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListener {
-    private lateinit var itemAdapter: ItemDetailAdapter
+    private lateinit var itemAdapter: MatchDetailAdapter
     private lateinit var favPresenter: MatchFavoritePresenter
     private var event: Event? = null
     private var isFavorite: Boolean = false
@@ -31,7 +31,7 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
 
-        itemAdapter = ItemDetailAdapter(mutableListOf())
+        itemAdapter = MatchDetailAdapter(mutableListOf())
         rv_item_detail.layoutManager = LinearLayoutManager(this)
         rv_item_detail.overScrollMode = View.OVER_SCROLL_NEVER
         rv_item_detail.setHasFixedSize(false)
@@ -55,8 +55,10 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
                     finish()
                 }
             }
-            is Team -> {
-                loadLogoTeam(data)
+            is TeamsResponse -> {
+                data.teams?.let {
+                    loadLogoTeam(it[0])
+                }
             }
         }
     }

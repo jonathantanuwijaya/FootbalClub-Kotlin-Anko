@@ -1,25 +1,27 @@
-package com.yeputra.footballclub.ui.dashboard
+package com.yeputra.footballclub.ui.favorites
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.Toolbar
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.TeamAdapter
-import com.yeputra.footballclub.base.BaseToolbarFragment
+import com.yeputra.footballclub.base.BaseFragment
+import com.yeputra.footballclub.model.Team
 import com.yeputra.footballclub.model.TeamsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
+import com.yeputra.footballclub.presenter.TeamFavoritePresenter
 import com.yeputra.footballclub.ui.details.DetailTeamActivity
-import com.yeputra.footballclub.ui.search.SearchTeamActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
-import com.yeputra.footballclub.utils.league
-import kotlinx.android.synthetic.main.app_bar_tab.*
+import com.yeputra.footballclub.utils.gone
 import kotlinx.android.synthetic.main.list_match.*
 
-class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
+class TeamFavoriteFm : BaseFragment<TeamFavoritePresenter>() {
     private lateinit var teamAdapter: TeamAdapter
+    private lateinit var presenterApi: LeaguePresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,16 +36,37 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
     }
 
     private fun initData() {
+        presenterApi = LeaguePresenter(this)
         teamAdapter = TeamAdapter(mutableListOf()){
-            startActivity(
-                Intent(context,DetailTeamActivity::class.java)
-                    .putExtra(INTENT_DATA, it))
+            showProgressbar()
+            it.name?.let { it1 -> presenterApi.getTeam(it1) }
         }
-        presenter.getTeams(league)
+        getRepository()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getRepository()
+    }
+
+    private fun getRepository(){
+        presenter.findAll {
+            val teams = mutableListOf<Team>()
+            for(data in it){
+                teams.add(
+                    Team(
+                        data.teamId,
+                        data.teamName,"",
+                        data.teamLogo,"",""
+                    )
+                )
+            }
+            teamAdapter.replaceItem(teams)
+        }
     }
 
     private fun initViewConfigure() {
-        toolbar_title.text = context?.getString(R.string.lbl_teams)
+        header.gone()
         rv_match.layoutManager = GridLayoutManager(context, 2)
         rv_match.adapter = teamAdapter
 
@@ -55,14 +78,19 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getTeams(league)
+            getRepository()
         }
     }
 
     override fun onPresenterSuccess(data: Any?) {
         super.onPresenterSuccess(data)
         when(data){
-            is TeamsResponse -> data.teams?.let { teamAdapter.replaceItem(it) }
+            is TeamsResponse -> {
+                hideProgressbar()
+                startActivity(
+                    Intent(context, DetailTeamActivity::class.java)
+                        .putExtra(INTENT_DATA, data.teams?.get(0)))
+            }
         }
     }
 
@@ -74,19 +102,5 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
         swipe_container.isRefreshing = false
     }
 
-    override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
-
-    override fun setToolbar(): Toolbar? = toolbar
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_search, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.menu_search -> startActivity(Intent(context, SearchTeamActivity::class.java))
-        }
-        return true
-    }
+    override fun initPresenter(): TeamFavoritePresenter = TeamFavoritePresenter(this)
 }

@@ -1,4 +1,4 @@
-package com.yeputra.footballclub.ui.dashboard
+package com.yeputra.footballclub.ui.favorites
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,10 +13,10 @@ import com.yeputra.footballclub.base.BaseFragment
 import com.yeputra.footballclub.presenter.MatchFavoritePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
-import kotlinx.android.synthetic.main.app_bar_tab.*
+import com.yeputra.footballclub.utils.gone
 import kotlinx.android.synthetic.main.list_match.*
 
-class FavoriteFm : BaseFragment<MatchFavoritePresenter>() {
+class MatchFavoriteFm : BaseFragment<MatchFavoritePresenter>() {
 
     private lateinit var matchAdapter: FavoriteAdapter
 
@@ -54,7 +54,7 @@ class FavoriteFm : BaseFragment<MatchFavoritePresenter>() {
     }
 
     private fun initViewConfigure() {
-        toolbar_title.text = context?.getString(R.string.botnav_favorite)
+        header.gone()
         rv_match.layoutManager = LinearLayoutManager(context)
         rv_match.adapter = matchAdapter
 

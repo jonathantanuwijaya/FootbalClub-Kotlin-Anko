@@ -1,15 +1,9 @@
 package com.yeputra.footballclub.base
 
-import android.os.Bundle
 import android.support.v7.widget.Toolbar
 
 abstract class BaseToolbarActivity<presenter: IBasePresenter>
     : BaseActivity<presenter>() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onStart() {
         super.onStart()

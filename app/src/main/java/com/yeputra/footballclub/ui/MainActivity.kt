@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.base.BaseActivity
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.ui.dashboard.FavoriteFm
+import com.yeputra.footballclub.ui.dashboard.FavoritesFm
 import com.yeputra.footballclub.ui.dashboard.MatchsFm
 import com.yeputra.footballclub.ui.dashboard.StandingFm
 import com.yeputra.footballclub.ui.dashboard.TeamFm
@@ -31,7 +31,7 @@ class MainActivity : BaseActivity<LeaguePresenter>() {
                     changeTo(R.id.main_container, TeamFm())
                 }
                 R.id.menu_favorites -> {
-                    changeTo(R.id.main_container, FavoriteFm())
+                    changeTo(R.id.main_container, FavoritesFm())
                 }
             }
             true

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.*
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.VPMatchAdapter
+import com.yeputra.footballclub.adapter.VPagerAdapter
 import com.yeputra.footballclub.base.BaseToolbarFragment
 import com.yeputra.footballclub.model.Pagers
 import com.yeputra.footballclub.presenter.LeaguePresenter
@@ -35,7 +35,7 @@ class MatchsFm : BaseToolbarFragment<LeaguePresenter>() {
             Pagers(getContextView().getString(R.string.lbl_prev_match), LastMatchFm()),
             Pagers(getContextView().getString(R.string.lbl_next_match), NextMatchFm())
         )
-        viewpager.adapter = fragmentManager?.let { VPMatchAdapter(fragments, it) }
+        viewpager.adapter = VPagerAdapter(fragments, childFragmentManager)
         tab.setupWithViewPager(viewpager)
         viewpager.overScrollMode = View.OVER_SCROLL_NEVER
     }

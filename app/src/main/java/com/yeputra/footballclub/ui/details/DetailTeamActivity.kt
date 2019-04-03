@@ -9,7 +9,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.VPMatchAdapter
+import com.yeputra.footballclub.adapter.VPagerAdapter
 import com.yeputra.footballclub.base.BaseToolbarActivity
 import com.yeputra.footballclub.model.Pagers
 import com.yeputra.footballclub.model.Team
@@ -59,7 +59,7 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
             Pagers(getString(R.string.lbl_team_info), teamInfoFm),
             Pagers(getString(R.string.lbl_players), playersFm)
         )
-        viewpager.adapter = supportFragmentManager?.let { VPMatchAdapter(fragments, it) }
+        viewpager.adapter = supportFragmentManager?.let { VPagerAdapter(fragments, it) }
         tab.setupWithViewPager(viewpager)
         viewpager.overScrollMode = View.OVER_SCROLL_NEVER
     }

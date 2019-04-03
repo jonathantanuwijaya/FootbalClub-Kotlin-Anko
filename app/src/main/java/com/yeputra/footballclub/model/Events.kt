@@ -65,7 +65,7 @@ data class Event(
     val awayRedCards: String?,
 
     @SerializedName("strThumb")
-    val tumb: String?
+    val thumb: String?
 ): Parcelable {
     fun getFormatDateEvent(): String =
         DateUtils.format(DateUtils.parser(dateEvent, "yyyy-MM-dd"),"EE, dd-MMM-yyyy")

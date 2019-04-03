@@ -12,10 +12,10 @@ import com.yeputra.footballclub.model.Team
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_team.*
 
-class ListTeamAdapter(
+class TeamAdapter(
     item: MutableList<Team>,
     private val listener: (Team) -> Unit
-) : BaseRecyclerViewAdapter<ListTeamAdapter.VHolder, Team>(item) {
+) : BaseRecyclerViewAdapter<TeamAdapter.VHolder, Team>(item) {
 
     override fun onBindViewHolder(holder: VHolder, item: Team, position: Int) {
         holder.binding(item, listener)

@@ -36,7 +36,3 @@ data class Player(
 data class PlayersResponse(
     val player: MutableList<Player>?
 )
-
-data class PlayerResponse(
-    val players: MutableList<Player>?
-)

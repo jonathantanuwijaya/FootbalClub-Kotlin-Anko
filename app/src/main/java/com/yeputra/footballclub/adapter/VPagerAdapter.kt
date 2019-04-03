@@ -11,12 +11,12 @@ import com.yeputra.footballclub.model.Pagers
  *    on 03/Mar/2019 17:22
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
-class VPMatchAdapter(
+class VPagerAdapter(
     private val fragments: MutableList<Pagers>,
     fmManager: FragmentManager
 ): FragmentPagerAdapter(fmManager){
 
-    override fun getItem(p0: Int): Fragment = fragments[p0].fragment
+    override fun getItem(position: Int): Fragment = fragments[position].fragment
 
     override fun getCount(): Int = fragments.size
 

@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.ListTeamAdapter
+import com.yeputra.footballclub.adapter.TeamAdapter
 import com.yeputra.footballclub.base.BaseToolbarActivity
 import com.yeputra.footballclub.model.TeamsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 
 class SearchTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
-    private lateinit var teamAdapter: ListTeamAdapter
+    private lateinit var teamAdapter: TeamAdapter
 
     override fun setButtonBack(): Boolean = true
 
@@ -36,7 +36,7 @@ class SearchTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
     }
 
     private fun initData(){
-        teamAdapter = ListTeamAdapter(mutableListOf()){
+        teamAdapter = TeamAdapter(mutableListOf()){
             startActivity(
                 Intent(this, DetailTeamActivity::class.java)
                     .putExtra(INTENT_DATA, it))
