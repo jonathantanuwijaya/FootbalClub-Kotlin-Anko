@@ -23,7 +23,7 @@
             android:padding="@dimen/margin_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="find event"
+            android:hint="@string/find_event"
             android:inputType="text"
             android:imeOptions="actionDone"/>
     </android.support.v7.widget.Toolbar>

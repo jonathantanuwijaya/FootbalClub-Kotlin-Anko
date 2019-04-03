@@ -77,7 +77,7 @@
                 android:layout_weight="1"/>
         <TextView
                 android:id="@+id/tv_points"
-                style="@style/TextView.Medium"
+                style="@style/TextView.MediumBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_point"

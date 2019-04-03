@@ -18,9 +18,11 @@
     <string name="botnav_next_match">Next Match</string>
     <string name="botnav_favorite">Favorites</string>
 
-    <string name="fav_empty">Favorite event is still empty</string>
     <string name="fav_add_successfully">This event was successfully added to the favorites list</string>
     <string name="fav_delete_successfully">This event was successfully deleted from the favorites list</string>
+
+    <string name="fav_team_add_successfully">This team was successfully added to the favorites list</string>
+    <string name="fav_team_delete_successfully">This team was successfully deleted from the favorites list</string>
 
     <!-- TEAM -->
     <string name="lbl_teams">Teams</string>
@@ -40,7 +42,11 @@
     <string name="lbl_loss">L</string>
     <string name="lbl_goaldif">GD</string>
     <string name="lbl_point">Pts</string>
+
     <string name="stadium">Stadium</string>
     <string name="website">Website</string>
     <string name="description">Description</string>
+
+    <string name="find_event">find event</string>
+    <string name="find_team">find team</string>
 </resources>

@@ -55,8 +55,11 @@ class PlayerDetailFm : BottomSheetDialogFragment() {
         }
     }
 
-    private fun formatDate(date: String?): String =
+    private fun formatDate(date: String?): String = try {
         DateUtils.format(DateUtils.parser(date,"yyyy-MM-dd"),"dd-MMM-yyyy")
+    }catch (e: Exception){ "" }
+
+
 
     private fun formatWidthOrWeight(wage: String?, weight: String?): String =
         wage?.let {

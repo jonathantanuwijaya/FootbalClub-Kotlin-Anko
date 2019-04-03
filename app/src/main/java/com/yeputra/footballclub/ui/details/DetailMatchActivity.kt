@@ -9,21 +9,21 @@ import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.ItemDetailAdapter
 import com.yeputra.footballclub.base.BaseActivity
 import com.yeputra.footballclub.model.*
-import com.yeputra.footballclub.presenter.FavoritePresenter
 import com.yeputra.footballclub.presenter.LeaguePresenter
+import com.yeputra.footballclub.presenter.MatchFavoritePresenter
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.activity_detail_match.*
 
 class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListener {
     private lateinit var itemAdapter: ItemDetailAdapter
-    private lateinit var favPresenter: FavoritePresenter
+    private lateinit var favPresenter: MatchFavoritePresenter
     private var event: Event? = null
     private var isFavorite: Boolean = false
     private var homeName = ""
 
     override fun initPresenter(): LeaguePresenter {
-        favPresenter = FavoritePresenter(this)
+        favPresenter = MatchFavoritePresenter(this)
         return LeaguePresenter(this)
     }
 
@@ -36,7 +36,6 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
         rv_item_detail.overScrollMode = View.OVER_SCROLL_NEVER
         rv_item_detail.setHasFixedSize(false)
         rv_item_detail.adapter = itemAdapter
-
 
         val eventId = intent.extras?.getString(INTENT_DATA)
         presenter.getDetail(eventId?:"0")
@@ -106,7 +105,7 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
                     snackbar(getString(R.string.fav_delete_successfully))
                 }
             else {
-                favPresenter.add(Favorite(
+                favPresenter.add(MatchFavorite(
                     it.idEvent,
                     it.getFormatDateEvent(),
                     it.homeTeam,

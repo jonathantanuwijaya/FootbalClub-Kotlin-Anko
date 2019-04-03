@@ -20,12 +20,6 @@ abstract class BasePresenter(private val activity: IBaseView): IBasePresenter {
         subscriber?.dispose()
     }
 
-    class onSucess<Data>(val view: IBaseView): Consumer<Data> {
-        override fun accept(t: Data) {
-
-        }
-    }
-
     fun onSuccess():Consumer<Any> =
         Consumer{
             activity.onPresenterSuccess(it)

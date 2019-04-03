@@ -36,8 +36,8 @@ class LeaguePresenter(
             .subscribe(onSuccess(), onFailed())
     }
 
-    fun getTeam(teamId: String){
-        subscriber = api.getTeam(teamId)
+    fun getTeam(teamName: String){
+        subscriber = api.getTeam(teamName)
             .compose(RxUtils.applyObservableAsync())
             .subscribe(onSuccess(), onFailed())
     }

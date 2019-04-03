@@ -15,6 +15,7 @@ import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.app_bar_search.*
+import java.util.concurrent.TimeUnit
 
 
 class SearchMatchActivity : BaseToolbarActivity<LeaguePresenter>() {
@@ -38,8 +39,8 @@ class SearchMatchActivity : BaseToolbarActivity<LeaguePresenter>() {
 
         rv_match.layoutManager = LinearLayoutManager(this)
         rv_match.adapter = matchAdapter
-
         RxTextView.textChangeEvents(et_finder)
+            .debounce(150, TimeUnit.MILLISECONDS)
             .filter { !et_finder.text.toString().isEmpty() }
             .subscribe {
                presenter.searchEvent(it.text().toString())

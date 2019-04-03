@@ -12,7 +12,6 @@ import com.yeputra.footballclub.utils.INTENT_DATA
 import kotlinx.android.synthetic.main.fragment_teaminfo.*
 
 class TeamInfoFm : BaseFragment<LeaguePresenter>() {
-
     private lateinit var team: Team
 
     override fun onCreateView(

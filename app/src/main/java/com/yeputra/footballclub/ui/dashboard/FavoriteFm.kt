@@ -10,14 +10,13 @@ import android.view.ViewGroup
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.FavoriteAdapter
 import com.yeputra.footballclub.base.BaseFragment
-import com.yeputra.footballclub.presenter.FavoritePresenter
+import com.yeputra.footballclub.presenter.MatchFavoritePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
-import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.app_bar_tab.*
 import kotlinx.android.synthetic.main.list_match.*
 
-class FavoriteFm : BaseFragment<FavoritePresenter>() {
+class FavoriteFm : BaseFragment<MatchFavoritePresenter>() {
 
     private lateinit var matchAdapter: FavoriteAdapter
 
@@ -51,8 +50,6 @@ class FavoriteFm : BaseFragment<FavoritePresenter>() {
     private fun getRepository(){
         presenter.findAll {
             matchAdapter.replaceItem(it)
-            if(it.isEmpty())
-                snackbar(getString(R.string.fav_empty))
         }
     }
 
@@ -81,5 +78,5 @@ class FavoriteFm : BaseFragment<FavoritePresenter>() {
         swipe_container.isRefreshing = false
     }
 
-    override fun initPresenter(): FavoritePresenter = FavoritePresenter(this)
+    override fun initPresenter(): MatchFavoritePresenter = MatchFavoritePresenter(this)
 }

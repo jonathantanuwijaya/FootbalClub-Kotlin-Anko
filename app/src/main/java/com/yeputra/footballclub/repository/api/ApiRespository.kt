@@ -20,7 +20,7 @@ interface ApiRespository {
     fun getTeams(@Query("id") idLeague: String): Observable<TeamsResponse>
 
     @GET(BASE_URL + "searchteams.php")
-    fun getTeam(@Query("t") teamId: String): Observable<TeamsResponse>
+    fun getTeam(@Query("t") teamName: String): Observable<TeamsResponse>
 
     @GET(BASE_URL + "lookup_all_players.php")
     fun getPlayers(@Query("id") teamId: String): Observable<PlayersResponse>
@@ -36,6 +36,4 @@ interface ApiRespository {
 
     @GET(BASE_URL + "searchevents.php")
     fun searchMatch(@Query("e") eventName: String): Observable<SearchMatchResponse>
-
-
 }

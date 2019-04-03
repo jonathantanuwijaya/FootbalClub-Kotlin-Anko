@@ -1,22 +1,25 @@
 package com.yeputra.footballclub.ui.search
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.MatchAdapter
+import com.yeputra.footballclub.adapter.ListTeamAdapter
 import com.yeputra.footballclub.base.BaseToolbarActivity
-import com.yeputra.footballclub.model.SearchMatchResponse
+import com.yeputra.footballclub.model.TeamsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
+import com.yeputra.footballclub.ui.details.DetailTeamActivity
+import com.yeputra.footballclub.utils.INTENT_DATA
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.app_bar_search.*
 import java.util.concurrent.TimeUnit
 
 
 class SearchTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
-    private lateinit var matchAdapter: MatchAdapter
+    private lateinit var teamAdapter: ListTeamAdapter
 
     override fun setButtonBack(): Boolean = true
 
@@ -28,26 +31,36 @@ class SearchTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        matchAdapter = MatchAdapter(mutableListOf()){
+        initData()
+        initViewConfigure()
+    }
 
+    private fun initData(){
+        teamAdapter = ListTeamAdapter(mutableListOf()){
+            startActivity(
+                Intent(this, DetailTeamActivity::class.java)
+                    .putExtra(INTENT_DATA, it))
         }
+    }
 
-        rv_match.layoutManager = LinearLayoutManager(this)
-        rv_match.adapter = matchAdapter
+    private fun initViewConfigure(){
+        rv_match.layoutManager = GridLayoutManager(this, 2)
+        rv_match.adapter = teamAdapter
 
+        et_finder.hint = getString(R.string.find_team)
         RxTextView.textChangeEvents(et_finder)
-            .debounce(500, TimeUnit.MILLISECONDS)
+            .debounce(150, TimeUnit.MILLISECONDS)
             .filter { !it.text().toString().isEmpty()}
             .subscribe {
-                presenter.searchEvent(it.text().toString())
+                presenter.getTeam(it.text().toString())
             }
     }
 
     override fun onPresenterSuccess(data: Any?) {
         super.onPresenterSuccess(data)
         when(data){
-            is SearchMatchResponse -> {
-                data.event?.let { matchAdapter.replaceItem(it) }
+            is TeamsResponse -> {
+                data.teams?.let { teamAdapter.replaceItem(it) }
             }
         }
     }

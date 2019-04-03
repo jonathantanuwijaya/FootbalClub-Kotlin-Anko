@@ -22,5 +22,5 @@
     <dimen name="photo_size">64dp</dimen>
 
     <dimen name="card_radius">2.5dp</dimen>
-    <dimen name="card_elevation">1dp</dimen>
+    <dimen name="card_elevation">1.5dp</dimen>
 </resources>
