@@ -43,7 +43,6 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
     }
 
     private fun initViewConfigure() {
-        toolbar_title.text = context?.getString(R.string.lbl_teams)
         rv_match.layoutManager = GridLayoutManager(context, 2)
         rv_match.adapter = teamAdapter
 

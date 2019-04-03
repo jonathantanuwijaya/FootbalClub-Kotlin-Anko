@@ -27,7 +27,6 @@ class FavoritesFm : BaseFragment<LeaguePresenter>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        toolbar_title.text = context?.getString(R.string.botnav_favorite)
         val fragments = mutableListOf(
             Pagers(getContextView().getString(R.string.botnav_match), MatchFavoriteFm()),
             Pagers(getContextView().getString(R.string.lbl_team), TeamFavoriteFm())

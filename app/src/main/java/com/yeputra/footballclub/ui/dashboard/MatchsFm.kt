@@ -30,7 +30,6 @@ class MatchsFm : BaseToolbarFragment<LeaguePresenter>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        toolbar_title.text = context?.getString(R.string.botnav_match)
         val fragments = mutableListOf(
             Pagers(getContextView().getString(R.string.lbl_prev_match), LastMatchFm()),
             Pagers(getContextView().getString(R.string.lbl_next_match), NextMatchFm())

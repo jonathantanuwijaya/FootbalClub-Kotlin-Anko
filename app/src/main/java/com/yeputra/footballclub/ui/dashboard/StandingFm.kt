@@ -53,8 +53,6 @@ class StandingFm : BaseToolbarFragment<LeaguePresenter>() {
     }
 
     private fun initViewConfigure(){
-        toolbar_title.text = context?.getString(R.string.lbl_standings)
-
         rv_match.layoutManager = LinearLayoutManager(context)
         rv_match.overScrollMode = View.OVER_SCROLL_NEVER
         rv_match.adapter = adapter
