@@ -3,8 +3,7 @@ package com.yeputra.footballclub.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.yeputra.footballclub.ui.match.LastMatchFm
-import com.yeputra.footballclub.ui.match.NextMatchFm
+import com.yeputra.footballclub.model.Pagers
 
 
 /**
@@ -13,13 +12,9 @@ import com.yeputra.footballclub.ui.match.NextMatchFm
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
 class VPMatchAdapter(
+    private val fragments: MutableList<Pagers>,
     fmManager: FragmentManager
 ): FragmentPagerAdapter(fmManager){
-
-    private val fragments = mutableListOf(
-        Pagers("Last Match", LastMatchFm()),
-        Pagers("Next Match", NextMatchFm())
-    )
 
     override fun getItem(p0: Int): Fragment = fragments[p0].fragment
 
@@ -27,5 +22,3 @@ class VPMatchAdapter(
 
     override fun getPageTitle(position: Int): CharSequence? = fragments[position].title
 }
-
-class Pagers(val title: String, val fragment: Fragment)

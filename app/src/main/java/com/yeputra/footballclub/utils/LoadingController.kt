@@ -8,17 +8,17 @@ import com.yeputra.footballclub.R
 
 class LoadingController(private val activity: Activity) {
 
-    private lateinit var dialog: Dialog
+    private var dialog: Dialog? = null
 
     fun showDialog() {
         dialog = Dialog(activity)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.loading)
-        dialog.show()
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.setCancelable(false)
+        dialog?.setContentView(R.layout.loading)
+        dialog?.show()
     }
 
     fun hideDialog() {
-        dialog.dismiss()
+        dialog?.dismiss()
     }
 }

@@ -49,6 +49,11 @@ abstract class BaseFragment<presenter: IBasePresenter>
         Toast.makeText(context,message, Toast.LENGTH_LONG).show()
     }
 
+    override fun onDestroyView() {
+        presenter.onDestroyPresenter()
+        super.onDestroyView()
+    }
+
     companion object {
         private const val TAG: String = "BaseFragment"
     }

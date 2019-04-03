@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.app_bar_search.*
 
 
-class SearchActivity : BaseToolbarActivity<LeaguePresenter>() {
+class SearchMatchActivity : BaseToolbarActivity<LeaguePresenter>() {
     private lateinit var matchAdapter: MatchAdapter
 
     override fun setButtonBack(): Boolean = true
@@ -40,6 +40,7 @@ class SearchActivity : BaseToolbarActivity<LeaguePresenter>() {
         rv_match.adapter = matchAdapter
 
         RxTextView.textChangeEvents(et_finder)
+            .filter { !et_finder.text.toString().isEmpty() }
             .subscribe {
                presenter.searchEvent(it.text().toString())
             }

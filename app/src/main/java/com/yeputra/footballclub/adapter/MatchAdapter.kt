@@ -27,7 +27,7 @@ class MatchAdapter(
                 .inflate(R.layout.items_match,parent,false)
         )
 
-    override fun onBindViewHolder(holder: VHolder, item: Event) {
+    override fun onBindViewHolder(holder: VHolder, item: Event, position: Int) {
         holder.binding(item,listener)
     }
 

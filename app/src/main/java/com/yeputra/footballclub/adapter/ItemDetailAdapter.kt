@@ -14,7 +14,7 @@ class ItemDetailAdapter(
     items: MutableList<Item>
 ): BaseRecyclerViewAdapter<ItemDetailAdapter.VHolder, Item>(items) {
 
-    override fun onBindViewHolder(holder: VHolder, item: Item) =
+    override fun onBindViewHolder(holder: VHolder, item: Item, position: Int) =
         holder.binding(item)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): VHolder =

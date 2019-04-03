@@ -14,6 +14,7 @@ import com.yeputra.footballclub.model.EventsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
+import com.yeputra.footballclub.utils.gone
 import com.yeputra.footballclub.utils.league
 import kotlinx.android.synthetic.main.list_match.*
 
@@ -43,6 +44,7 @@ class NextMatchFm : BaseFragment<LeaguePresenter>() {
     }
 
     private fun initViewConfigure() {
+        header.gone()
         rv_match.layoutManager = LinearLayoutManager(context)
         rv_match.adapter = matchAdapter
 

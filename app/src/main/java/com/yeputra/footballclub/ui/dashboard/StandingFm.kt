@@ -1,49 +1,63 @@
 package com.yeputra.footballclub.ui.dashboard
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.MatchAdapter
-import com.yeputra.footballclub.base.BaseFragment
-import com.yeputra.footballclub.model.EventsResponse
+import com.yeputra.footballclub.adapter.StandingsAdapter
+import com.yeputra.footballclub.base.BaseToolbarFragment
+import com.yeputra.footballclub.model.StandingsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.ui.details.DetailMatchActivity
-import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.league
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_standing.*
 
-class StandingFm : BaseFragment<LeaguePresenter>() {
-    private lateinit var matchAdapter: MatchAdapter
+class StandingFm : BaseToolbarFragment<LeaguePresenter>() {
+    companion object {
+        private var instance: StandingFm? = null
+
+        @Synchronized
+        fun getInstance(): StandingFm {
+            if (instance == null) {
+                Log.d("BaseFragment", "Create instance")
+                instance = StandingFm()
+            }
+            return instance as StandingFm
+        }
+    }
+
+    private lateinit var adapter: StandingsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) : View? = inflater.inflate(R.layout.fragment_standing,container,false)
+    ) : View? {
+        return inflater.inflate(R.layout.fragment_standing, container, false)
+    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initData()
         initViewConfigure()
     }
 
     private fun initData() {
-        matchAdapter = MatchAdapter(mutableListOf()){
-            val intent = Intent(context, DetailMatchActivity::class.java)
-            intent.putExtra(INTENT_DATA, it.idEvent)
-            context?.startActivity(intent)
-        }
-        presenter.getLastMatch(league)
+        adapter = StandingsAdapter(mutableListOf()){}
+        presenter.getStanding(league)
     }
 
     private fun initViewConfigure(){
+        toolbar_title.text = context?.getString(R.string.lbl_standings)
+
         rv_match.layoutManager = LinearLayoutManager(context)
-        rv_match.adapter = matchAdapter
+        rv_match.overScrollMode = View.OVER_SCROLL_NEVER
+        rv_match.adapter = adapter
 
         swipe_container.setColorSchemeColors(
             ContextCompat.getColor(getContextView(),R.color.colorPrimary),
@@ -53,16 +67,15 @@ class StandingFm : BaseFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getLastMatch(league)
+            presenter.getStanding(league)
         }
     }
 
     override fun onPresenterSuccess(data: Any?) {
         super.onPresenterSuccess(data)
-
         when(data){
-            is EventsResponse ->
-                data.events?.let { matchAdapter.replaceItem(it) }
+            is StandingsResponse ->
+                data.table?.let { adapter.replaceItem(it) }
         }
     }
 
@@ -75,4 +88,6 @@ class StandingFm : BaseFragment<LeaguePresenter>() {
     }
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
+
+    override fun setToolbar(): Toolbar? = toolbar
 }

@@ -48,12 +48,6 @@ class LeaguePresenter(
             .subscribe(onSuccess(), onFailed())
     }
 
-    fun getPlayer(playerId: String){
-        subscriber = api.getPlayer(playerId)
-            .compose(RxUtils.applyObservableAsync())
-            .subscribe(onSuccess(), onFailed())
-    }
-
     fun getLastMatch(leagueId: String){
         v.showProgressbar()
         subscriber = api.getLastMatch(leagueId)

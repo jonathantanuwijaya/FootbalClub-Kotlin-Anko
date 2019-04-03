@@ -20,7 +20,7 @@ abstract class BaseRecyclerViewAdapter <VH: RecyclerView.ViewHolder,T>(
 
     var isSearching: Boolean = false
 
-    abstract fun onBindViewHolder(holder: VH, item: T)
+    abstract fun onBindViewHolder(holder: VH, item: T, position: Int)
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -46,21 +46,21 @@ abstract class BaseRecyclerViewAdapter <VH: RecyclerView.ViewHolder,T>(
     }
 
     override fun onFilterResult(query: String?): MutableList<T> {
-        return items
+        return this.items
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return this.items.size
     }
 
     override fun onBindViewHolder(holder: VH, position: Int){
-        onBindViewHolder(holder, items[position])
+        onBindViewHolder(holder, this.items[position], position)
     }
 
     fun getItem(position: Int) : T? = items[position]
 
     fun addItem(item: T) {
-        items.add(item)
+        this.items.add(item)
         this.notifyDataSetChanged()
     }
 

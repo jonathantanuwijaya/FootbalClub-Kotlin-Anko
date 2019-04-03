@@ -27,7 +27,7 @@ class FavoriteAdapter(
                 .inflate(R.layout.items_match,parent,false)
         )
 
-    override fun onBindViewHolder(holder: VHolder, item: Favorite) {
+    override fun onBindViewHolder(holder: VHolder, item: Favorite, position: Int) {
         holder.binding(item,listener)
     }
 

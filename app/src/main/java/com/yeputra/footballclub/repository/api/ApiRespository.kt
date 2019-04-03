@@ -25,9 +25,6 @@ interface ApiRespository {
     @GET(BASE_URL + "lookup_all_players.php")
     fun getPlayers(@Query("id") teamId: String): Observable<PlayersResponse>
 
-    @GET(BASE_URL + "lookupplayer.php")
-    fun getPlayer(@Query("id") playerId: String): Observable<PlayerResponse>
-
     @GET(BASE_URL + "eventspastleague.php")
     fun getLastMatch(@Query("id") leagueId: String): Observable<EventsResponse>
 

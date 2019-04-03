@@ -14,6 +14,7 @@ import com.yeputra.footballclub.presenter.FavoritePresenter
 import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.snackbar
+import kotlinx.android.synthetic.main.app_bar_tab.*
 import kotlinx.android.synthetic.main.list_match.*
 
 class FavoriteFm : BaseFragment<FavoritePresenter>() {
@@ -56,6 +57,7 @@ class FavoriteFm : BaseFragment<FavoritePresenter>() {
     }
 
     private fun initViewConfigure() {
+        toolbar_title.text = context?.getString(R.string.botnav_favorite)
         rv_match.layoutManager = LinearLayoutManager(context)
         rv_match.adapter = matchAdapter
 

@@ -6,11 +6,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/app_bar">
-    </include>
-
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"

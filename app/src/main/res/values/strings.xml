@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football Match Schedule</string>
+    <string name="app_name">Football App</string>
 
     <string name="no_internet_connection">Masalah jaringan, cek koneksi internet Anda dan silakan coba lagi</string>
     <string name="vs">vs</string>
@@ -12,6 +12,8 @@
     <string name="menu_search">Search Events</string>
 
     <string name="botnav_match">Match</string>
+    <string name="lbl_prev_match">Last Match</string>
+    <string name="lbl_next_match">Next Match</string>
     <string name="botnav_prev_match">Prev. Match</string>
     <string name="botnav_next_match">Next Match</string>
     <string name="botnav_favorite">Favorites</string>
@@ -22,6 +24,11 @@
 
     <!-- TEAM -->
     <string name="lbl_teams">Teams</string>
+    <string name="lbl_team_info">Team Info</string>
+
+    <!-- PLAYER -->
+    <string name="lbl_players">Players</string>
+    <string name="lbl_player">Player</string>
 
     <!-- STANDING -->
     <string name="lbl_standings">Standings</string>
@@ -33,4 +40,7 @@
     <string name="lbl_loss">L</string>
     <string name="lbl_goaldif">GD</string>
     <string name="lbl_point">Pts</string>
+    <string name="stadium">Stadium</string>
+    <string name="website">Website</string>
+    <string name="description">Description</string>
 </resources>

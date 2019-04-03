@@ -1,31 +1,32 @@
-package com.yeputra.footballclub.ui.match
+package com.yeputra.footballclub.ui.team
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.adapter.MatchAdapter
+import com.yeputra.footballclub.adapter.PlayersAdapter
 import com.yeputra.footballclub.base.BaseFragment
-import com.yeputra.footballclub.model.EventsResponse
+import com.yeputra.footballclub.model.PlayersResponse
+import com.yeputra.footballclub.model.Team
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.ui.details.DetailMatchActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
-import com.yeputra.footballclub.utils.gone
 import com.yeputra.footballclub.utils.league
-import kotlinx.android.synthetic.main.list_match.*
+import kotlinx.android.synthetic.main.fragment_players.*
 
-class LastMatchFm : BaseFragment<LeaguePresenter>() {
-    private lateinit var matchAdapter: MatchAdapter
+class PlayersFm : BaseFragment<LeaguePresenter>() {
+    private var btSheetFrag = PlayerDetailFm()
+    private lateinit var playersAdapter: PlayersAdapter
+    private lateinit var team: Team
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) : View? = inflater.inflate(R.layout.list_match,container,false)
+    ) : View? = inflater.inflate(R.layout.fragment_players,container,false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,18 +35,21 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
     }
 
     private fun initData() {
-        matchAdapter = MatchAdapter(mutableListOf()){
-            val intent = Intent(context, DetailMatchActivity::class.java)
-            intent.putExtra(INTENT_DATA, it.idEvent)
-            context?.startActivity(intent)
+        arguments?.getParcelable<Team>(INTENT_DATA)?.let {
+            team = it
         }
-        presenter.getLastMatch(league)
+        playersAdapter = PlayersAdapter(mutableListOf()){
+            val bundle = Bundle()
+            bundle.putParcelable(INTENT_DATA, it)
+            btSheetFrag.arguments = bundle
+            btSheetFrag.show(fragmentManager, "")
+        }
+        team.idTeam?.let { presenter.getPlayers(it) }
     }
 
-    private fun initViewConfigure(){
-        header.gone()
-        rv_match.layoutManager = LinearLayoutManager(context)
-        rv_match.adapter = matchAdapter
+    private fun initViewConfigure() {
+        rv_match.layoutManager = GridLayoutManager(context, 2)
+        rv_match.adapter = playersAdapter
 
         swipe_container.setColorSchemeColors(
             ContextCompat.getColor(getContextView(),R.color.colorPrimary),
@@ -55,25 +59,23 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getLastMatch(league)
+            presenter.getTeams(league)
         }
     }
 
     override fun onPresenterSuccess(data: Any?) {
         super.onPresenterSuccess(data)
-
         when(data){
-            is EventsResponse ->
-                data.events?.let { matchAdapter.replaceItem(it) }
+            is PlayersResponse -> data.player?.let { playersAdapter.replaceItem(it) }
         }
     }
 
     override fun showProgressbar() {
-        swipe_container?.isRefreshing = true
+        swipe_container.isRefreshing = true
     }
 
     override fun hideProgressbar() {
-        swipe_container?.isRefreshing = false
+        swipe_container.isRefreshing = false
     }
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)

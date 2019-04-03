@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_btsheet_detail_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_medium">
+
+    <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/margin_small">
+        <LinearLayout
+                android:layout_width="@dimen/margin_multi_extra_big"
+                android:layout_height="@dimen/margin_extra_small"
+                android:background="@color/devider"
+                android:orientation="vertical">
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_small">
+        <ImageView
+                android:id="@+id/img_photo"
+                android:layout_width="@dimen/photo_size"
+                android:layout_height="@dimen/photo_size"
+                android:src="@drawable/ic_player"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/margin_small">
+
+            <TextView
+                    android:id="@+id/tv_player_name"
+                    style="@style/TextView.BigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description"/>
+
+            <TextView
+                    android:id="@+id/tv_nationality"
+                    style="@style/TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="India"
+                    android:drawableStart="@drawable/ic_nationality"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="@dimen/divider"
+          android:background="@color/devider"
+          android:layout_marginTop="@dimen/margin_medium"
+          android:layout_marginBottom="@dimen/margin_medium"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_small">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_birthday"
+                    android:id="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                    android:id="@+id/tv_birthdate_location"
+                    style="@style/TextView.Small"
+                    android:text="12-Mar-1993"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                    android:text="Male"
+                    style="@style/TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_birthdate_location"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:id="@+id/tv_gender"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_accessibility"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/imageView2"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gender"/>
+
+            <TextView
+                    android:id="@+id/tv_wage"
+                    style="@style/TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="W : 5Kg"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    android:layout_marginStart="@dimen/margin_small"/>
+
+            <TextView
+                    android:id="@+id/tv_height"
+                    style="@style/TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="H : 170cm"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_wage"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    android:layout_marginStart="@dimen/margin_small"/>
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_teams"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/imageView3"/>
+            <TextView
+                    android:id="@+id/tv_team_name"
+                    style="@style/TextView.Small"
+                    android:text="Madrid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    android:layout_marginStart="8dp"/>
+
+            <TextView
+                    android:id="@+id/tv_posisiton"
+                    android:text="Defence"
+                    style="@style/TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_team_name"
+                    android:layout_marginStart="@dimen/margin_small"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"/>
+
+            <TextView
+                    android:id="@+id/tv_date_signed"
+                    android:text="01-Feb-2019"
+                    style="@style/TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_posisiton"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    android:layout_marginStart="@dimen/margin_small"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="@dimen/divider"
+          android:background="@color/devider"
+          android:layout_marginTop="@dimen/margin_medium"
+          android:layout_marginBottom="@dimen/margin_small"/>
+
+    <TextView
+            android:id="@+id/tv_desc"
+            style="@style/TextView.Small"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"/>
+</LinearLayout>
