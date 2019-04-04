@@ -40,7 +40,7 @@ class SearchMatchActivity : BaseToolbarActivity<LeaguePresenter>() {
         rv_match.layoutManager = LinearLayoutManager(this)
         rv_match.adapter = matchAdapter
         RxTextView.textChangeEvents(et_finder)
-            .debounce(150, TimeUnit.MILLISECONDS)
+            .debounce(300, TimeUnit.MILLISECONDS)
             .filter { !et_finder.text.toString().isEmpty() }
             .subscribe {
                presenter.searchEvent(it.text().toString())

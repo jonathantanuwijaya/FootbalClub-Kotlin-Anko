@@ -49,7 +49,7 @@ class SearchTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
 
         et_finder.hint = getString(R.string.find_team)
         RxTextView.textChangeEvents(et_finder)
-            .debounce(150, TimeUnit.MILLISECONDS)
+            .debounce(300, TimeUnit.MILLISECONDS)
             .filter { !it.text().toString().isEmpty()}
             .subscribe {
                 presenter.getTeam(it.text().toString())

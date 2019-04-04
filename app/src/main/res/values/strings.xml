@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Football App</string>
     <string name="league_name">English Premier League</string>
-    <string name="copyright">Training KADE Dicoding by yovi121093@gmail.com\r\nCopyright © 2019</string>
+    <string name="copyright">Training KADE Dicoding by yovi121093@gmail.com\nCopyright © 2019</string>
 
     <string name="no_internet_connection">Masalah jaringan, cek koneksi internet Anda dan silakan coba lagi</string>
     <string name="vs">vs</string>

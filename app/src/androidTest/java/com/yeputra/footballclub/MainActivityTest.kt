@@ -11,14 +11,10 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import com.yeputra.footballclub.ui.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import android.support.test.espresso.IdlingRegistry
-import org.junit.Before
-import android.support.test.espresso.IdlingResource
-import com.yeputra.footballclub.ui.MainActivity
-import org.junit.After
 
 
 /**
@@ -32,128 +28,28 @@ class MainActivityTest {
     @Rule
     @JvmField var activity = ActivityTestRule(MainActivity::class.java)
 
-    private var mIdlingResource: IdlingResource? = null
-
-
-    /**
-     * Use [to launch and get access to the activity.][ActivityScenario.onActivity]
-     */
-    @Before
-    fun registerIdlingResource() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        activityScenario.onActivity(object : ActivityScenario.ActivityAction<MainActivity>() {
-            fun perform(activity: MainActivity) {
-                mIdlingResource = activity.getIdlingResource()
-                // To prove that the test fails, omit this call:
-                IdlingRegistry.getInstance().register(mIdlingResource!!)
-            }
-        })
-    }
-
-    @After
-    fun unregisterIdlingResource() {
-        if (mIdlingResource != null) {
-            IdlingRegistry.getInstance().unregister(mIdlingResource)
-        }
-    }
-
     @Test
     fun onEachButtonNavigationClickTest(){
-        /*onView(withId(R.id.menu_prev_match)).perform(click())
-        Thread.sleep(1000)
+        onView(withId(R.id.menu_standing)).perform(click())
 
-        onView(withId(R.id.menu_next_match)).perform(click())
-        Thread.sleep(1000)
+        onView(withId(R.id.menu_match)).perform(click())
+
+        onView(withId(R.id.menu_teams)).perform(click())
 
         onView(withId(R.id.menu_favorites)).perform(click())
-        Thread.sleep(1000)*/
     }
 
     @Test
-    fun onDetailsEventTest(){
-       /* val menu = arrayOf(R.id.menu_prev_match, R.id.menu_next_match, R.id.menu_favorites)
-
-        for(m in menu){
-            onView(withId(m)).perform(click())
-            Thread.sleep(500)
-
-            try{
-                onView(withId(R.id.rv_match)).perform(
-                    actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
-                )
-                Thread.sleep(500)
-                Espresso.pressBack()
-            }catch (e: Exception) {
-                Log.e(MainActivity::class.java.simpleName, "Data kosong!")
-            }
-        }*/
-    }
-
-    @Test
-    fun onAddMainEventToFavoriteTest(){
-        /*val menu = arrayOf(R.id.menu_prev_match, R.id.menu_next_match)
-        for(m in menu){
-            onView(withId(m)).perform(click())
-            Thread.sleep(500)
-
-            try{
-                onView(withId(R.id.rv_match)).perform(
-                    actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
-                )
-                Thread.sleep(500)
-
-                onView(withId(R.id.bt_favorite)).perform(click())
-                Thread.sleep(100)
-                Espresso.pressBack()
-            }catch (e: Exception) {
-                Log.e(MainActivity::class.java.simpleName, "Data kosong!")
-            }
-        }*/
-    }
-
-    @Test
-    fun onAddResultSearchEventToFavoriteTest() {
-        val club = "Barchelona"
-        Thread.sleep(1000)
-
-        onView(withId(R.id.menu_search)).perform(click())
-        onView(withId(R.id.et_finder)).perform(typeText(club))
-        Espresso.closeSoftKeyboard()
-        Thread.sleep(1000)
-
+    fun onDetailsEventAndAddFavoriteTest(){
+        onView(withId(R.id.menu_match)).perform(click())
         try{
-            onView(withId(R.id.rv_match)).perform(
-                scrollToPosition<RecyclerView.ViewHolder>(15)
-            )
-            Thread.sleep(500)
-
-            onView(withId(R.id.rv_match)).perform(
-                scrollToPosition<RecyclerView.ViewHolder>(0)
-            )
-            Thread.sleep(500)
+            onView(withId(R.id.viewpager)).perform(swipeLeft())
+            onView(withId(R.id.viewpager)).perform(swipeRight())
 
             onView(withId(R.id.rv_match)).perform(
                 actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
             )
             onView(withId(R.id.bt_favorite)).perform(click())
-            Thread.sleep(100)
-        }catch (e: Exception){
-            Log.e(MainActivityTest::class.java.simpleName, "Data kosong")
-        }
-    }
-
-    @Test
-    fun onRemoveEventFavoriteTest(){
-        onView(withId(R.id.menu_favorites)).perform(click())
-        Thread.sleep(500)
-
-        try{
-            onView(withId(R.id.rv_match)).perform(
-                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
-            )
-            Thread.sleep(500)
-            onView(withId(R.id.bt_favorite)).perform(click())
-            Thread.sleep(500)
             Espresso.pressBack()
         }catch (e: Exception) {
             Log.e(MainActivity::class.java.simpleName, "Data kosong!")
@@ -161,37 +57,101 @@ class MainActivityTest {
     }
 
     @Test
-    fun onSearchEventTest() {
-        val clubs = arrayListOf("Barchelona", "Madrid", "Manchester", "Liverpool")
-        onView(withId(R.id.menu_search)).perform(click())
-
-        for(club in clubs){
-            onView(withId(R.id.et_finder)).perform(typeText(club))
-            Espresso.closeSoftKeyboard()
-            Thread.sleep(1000)
-
+    fun onDetailsTeamPlayerAndAddFavoriteTest(){
+        onView(withId(R.id.menu_teams)).perform(click())
+        Thread.sleep(1500)
+        try{
             onView(withId(R.id.rv_match)).perform(
-                scrollToPosition<RecyclerView.ViewHolder>(15)
+                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
             )
-            Thread.sleep(500)
 
-            onView(withId(R.id.rv_match)).perform(
-                scrollToPosition<RecyclerView.ViewHolder>(0)
-            )
-            Thread.sleep(500)
+            onView(withId(R.id.viewpager)).perform(swipeLeft())
 
             onView(withId(R.id.rv_match)).perform(
                 actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
             )
-            Thread.sleep(100)
 
-            pressBack()
-            Thread.sleep(500)
-            onView(withId(R.id.et_finder)).perform(clearText())
+            onView(withId(R.id.viewpager)).perform(swipeLeft())
+
+            onView(withId(R.id.menu_favorite)).perform(click())
+            Espresso.pressBack()
+        }catch (e: Exception) {
+            Log.e(MainActivity::class.java.simpleName, "Data kosong!")
         }
     }
 
-    companion object {
-        private const val TAG: String = "MainActivityTest"
+    @Test
+    fun onRemoveFavoriteTest(){
+        onView(withId(R.id.menu_favorites)).perform(click())
+        try{
+            onView(withId(R.id.rv_match)).perform(
+                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+            )
+            onView(withId(R.id.bt_favorite)).perform(click())
+            Espresso.pressBack()
+
+            onView(withId(R.id.viewpager)).perform(swipeLeft())
+            onView(withId(R.id.rv_match)).perform(
+                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+            )
+            onView(withId(R.id.menu_favorite)).perform(click())
+            onView(withId(R.id.viewpager)).perform(swipeLeft())
+            Espresso.pressBack()
+        }catch (e: Exception) {
+            Log.e(MainActivity::class.java.simpleName, "Data kosong!")
+        }
+    }
+
+    @Test
+    fun onSearchEventAndDetailAndAddFavoriteTest() {
+        onView(withId(R.id.menu_match)).perform(click())
+        onView(withId(R.id.menu_search)).perform(click())
+        onView(withId(R.id.et_finder)).perform(typeText("arsenal"))
+        Espresso.closeSoftKeyboard()
+        Thread.sleep(1500)
+
+        onView(withId(R.id.rv_match)).perform(
+            scrollToPosition<RecyclerView.ViewHolder>(15)
+        )
+        onView(withId(R.id.rv_match)).perform(
+            scrollToPosition<RecyclerView.ViewHolder>(0)
+        )
+
+        onView(withId(R.id.rv_match)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+        )
+        onView(withId(R.id.bt_favorite)).perform(click())
+        pressBack()
+        onView(withId(R.id.et_finder)).perform(clearText())
+    }
+
+    @Test
+    fun onSearchTeamAndDetailAndAddFavoriteTest() {
+        onView(withId(R.id.menu_teams)).perform(click())
+        onView(withId(R.id.menu_search)).perform(click())
+        onView(withId(R.id.et_finder)).perform(typeText("arsenal"))
+        Espresso.closeSoftKeyboard()
+        Thread.sleep(1500)
+
+        onView(withId(R.id.rv_match)).perform(
+            scrollToPosition<RecyclerView.ViewHolder>(5)
+        )
+
+        onView(withId(R.id.rv_match)).perform(
+            scrollToPosition<RecyclerView.ViewHolder>(0)
+        )
+
+        onView(withId(R.id.rv_match)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+        )
+
+        onView(withId(R.id.viewpager)).perform(swipeLeft())
+        onView(withId(R.id.rv_match)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+        )
+        onView(withId(R.id.viewpager)).perform(swipeRight())
+        onView(withId(R.id.menu_favorite)).perform(click())
+        pressBack()
+        onView(withId(R.id.et_finder)).perform(clearText())
     }
 }
