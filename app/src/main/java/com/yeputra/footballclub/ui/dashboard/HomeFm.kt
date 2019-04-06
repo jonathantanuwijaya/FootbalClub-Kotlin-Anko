@@ -63,7 +63,7 @@ class HomeFm : BaseToolbarFragment<LeaguePresenter>() {
 
                     Glide.with(this)
                         .load(league.logo)
-                        .apply(RequestOptions().placeholder(R.drawable.ic_logo_default))
+                        .apply(RequestOptions().placeholder(R.drawable.logo))
                         .into(img_logo)
 
                     tv_name.text = league.name
