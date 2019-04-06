@@ -35,7 +35,7 @@
         <TextView
                 android:id="@+id/tv_name"
                 android:text="@string/league_name"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 android:gravity="center"
                 style="@style/TextView.BigBold"
                 android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                 <TextView
                         android:id="@+id/tv_country"
                         style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorTextViewSecondary"
                         android:text="@string/lbl_country"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="@dimen/margin_extra_small"
@@ -101,7 +101,7 @@
                 <TextView
                         android:id="@+id/tv_formed_year"
                         style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorTextViewSecondary"
                         android:text="@string/lbl_formed_year"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="@dimen/margin_extra_small"
@@ -124,7 +124,7 @@
                 <TextView
                         android:id="@+id/tv_date_first_event"
                         style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorTextViewSecondary"
                         android:text="@string/lbl_date_first_event"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="@dimen/margin_extra_small"
@@ -147,7 +147,7 @@
                 <TextView
                         android:id="@+id/tv_desc"
                         style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorTextViewSecondary"
                         android:text="@string/lbl_date_first_event"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="@dimen/margin_extra_small"

@@ -15,7 +15,7 @@
                 android:id="@+id/tv_name"
                 android:text="@string/league_name"
                 style="@style/TextView.MediumBold"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorTextViewSecondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorTextViewSecondary"/>
     </android.support.constraint.ConstraintLayout>
 
     <View
