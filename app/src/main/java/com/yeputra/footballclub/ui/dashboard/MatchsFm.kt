@@ -12,10 +12,13 @@ import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.ui.match.LastMatchFm
 import com.yeputra.footballclub.ui.match.NextMatchFm
 import com.yeputra.footballclub.ui.search.SearchMatchActivity
+import com.yeputra.footballclub.utils.league
 import kotlinx.android.synthetic.main.app_bar_tab.*
 import kotlinx.android.synthetic.main.fragment_matchs.*
 
 class MatchsFm : BaseToolbarFragment<LeaguePresenter>() {
+    override fun setButtonBack(): Boolean = true
+
     override fun setToolbar(): Toolbar? = toolbar
 
     override fun showProgressbar() {}
@@ -30,6 +33,8 @@ class MatchsFm : BaseToolbarFragment<LeaguePresenter>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        toolbar_title.text = league.name
         val fragments = mutableListOf(
             Pagers(getContextView().getString(R.string.lbl_prev_match), LastMatchFm()),
             Pagers(getContextView().getString(R.string.lbl_next_match), NextMatchFm())

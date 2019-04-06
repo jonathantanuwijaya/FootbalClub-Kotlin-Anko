@@ -1,12 +1,8 @@
 package com.yeputra.footballclub
 
 import com.yeputra.footballclub.base.IBaseView
-import com.yeputra.footballclub.model.EventsResponse
-import com.yeputra.footballclub.model.PlayersResponse
-import com.yeputra.footballclub.model.StandingsResponse
-import com.yeputra.footballclub.model.TeamsResponse
+import com.yeputra.footballclub.model.*
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.utils.league
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -37,6 +33,11 @@ class LeaguePresenterTest {
     @Mock
     private lateinit var playersResponse: PlayersResponse
 
+    @Mock
+    private lateinit var leaguesResponse: LeaguesResponse
+
+    private var league: String = "4328"
+
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
@@ -47,7 +48,24 @@ class LeaguePresenterTest {
         spy(view.onPresenterSuccess(events))
         spy(view.onPresenterSuccess(teamsResponse))
         spy(view.onPresenterSuccess(playersResponse))
+        spy(view.onPresenterSuccess(leaguesResponse))
         spy(view.hideProgressbar())
+    }
+
+    @Test
+    fun getLeagues() {
+        presenter.getLeagues()
+        verify(view, times(2)).showProgressbar()
+        verify(view, times(1)).onPresenterSuccess(leaguesResponse)
+        verify(view, times(1)).hideProgressbar()
+    }
+
+    @Test
+    fun getLeague() {
+        presenter.getLeague(league)
+        verify(view, times(2)).showProgressbar()
+        verify(view, times(1)).onPresenterSuccess(leaguesResponse)
+        verify(view, times(1)).hideProgressbar()
     }
 
     @Test

@@ -26,10 +26,21 @@ import org.junit.runner.RunWith
 class MainActivityTest {
 
     @Rule
-    @JvmField var activity = ActivityTestRule(MainActivity::class.java)
+    @JvmField var activity = ActivityTestRule(SplashScreenActivity::class.java)
+
+    private fun gotoMainActivity(){
+        Thread.sleep(2000)
+        onView(withId(R.id.rv_league)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+        )
+    }
 
     @Test
     fun onEachButtonNavigationClickTest(){
+        gotoMainActivity()
+
+        onView(withId(R.id.menu_home)).perform(click())
+
         onView(withId(R.id.menu_standing)).perform(click())
 
         onView(withId(R.id.menu_match)).perform(click())
@@ -41,6 +52,8 @@ class MainActivityTest {
 
     @Test
     fun onDetailsEventAndAddFavoriteTest(){
+        gotoMainActivity()
+
         onView(withId(R.id.menu_match)).perform(click())
         try{
             onView(withId(R.id.viewpager)).perform(swipeLeft())
@@ -58,6 +71,7 @@ class MainActivityTest {
 
     @Test
     fun onDetailsTeamPlayerAndAddFavoriteTest(){
+        gotoMainActivity()
         onView(withId(R.id.menu_teams)).perform(click())
         Thread.sleep(1500)
         try{
@@ -82,6 +96,8 @@ class MainActivityTest {
 
     @Test
     fun onRemoveFavoriteTest(){
+        gotoMainActivity()
+
         onView(withId(R.id.menu_favorites)).perform(click())
         try{
             onView(withId(R.id.rv_match)).perform(
@@ -104,6 +120,8 @@ class MainActivityTest {
 
     @Test
     fun onSearchEventAndDetailAndAddFavoriteTest() {
+        gotoMainActivity()
+
         onView(withId(R.id.menu_match)).perform(click())
         onView(withId(R.id.menu_search)).perform(click())
         onView(withId(R.id.et_finder)).perform(typeText("arsenal"))
@@ -127,6 +145,8 @@ class MainActivityTest {
 
     @Test
     fun onSearchTeamAndDetailAndAddFavoriteTest() {
+        gotoMainActivity()
+
         onView(withId(R.id.menu_teams)).perform(click())
         onView(withId(R.id.menu_search)).perform(click())
         onView(withId(R.id.et_finder)).perform(typeText("arsenal"))

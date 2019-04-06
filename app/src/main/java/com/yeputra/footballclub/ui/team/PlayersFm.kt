@@ -59,7 +59,7 @@ class PlayersFm : BaseFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getTeams(league)
+            presenter.getTeams(league.idLeague.toString())
         }
     }
 

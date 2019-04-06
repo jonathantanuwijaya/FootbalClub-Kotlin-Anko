@@ -13,6 +13,13 @@ import retrofit2.http.Query
  * Company SIEMO - PT. Multipolar Technology, Tbk
  */
 interface ApiRespository {
+
+    @GET(BASE_URL + "all_leagues.php")
+    fun getLeagues(): Observable<LeaguesResponse>
+
+    @GET(BASE_URL + "lookupleague.php")
+    fun getLeague(@Query("id") leagueId: String): Observable<LeaguesResponse>
+
     @GET(BASE_URL + "lookuptable.php")
     fun getStandings(@Query("l") idLeague: String): Observable<StandingsResponse>
 

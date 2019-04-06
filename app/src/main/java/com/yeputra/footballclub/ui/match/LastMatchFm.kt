@@ -39,7 +39,7 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
             intent.putExtra(INTENT_DATA, it.idEvent)
             context?.startActivity(intent)
         }
-        presenter.getLastMatch(league)
+        presenter.getLastMatch(league.idLeague.toString())
     }
 
     private fun initViewConfigure(){
@@ -55,7 +55,7 @@ class LastMatchFm : BaseFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getLastMatch(league)
+            presenter.getLastMatch(league.idLeague.toString())
         }
     }
 

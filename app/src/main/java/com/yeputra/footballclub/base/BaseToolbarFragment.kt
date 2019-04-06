@@ -22,7 +22,16 @@ abstract class BaseToolbarFragment<presenter: IBasePresenter>
         val baseActivity = (activity as AppCompatActivity)
         baseActivity.setSupportActionBar(setToolbar())
         baseActivity.supportActionBar?.setDisplayShowTitleEnabled(false)
+        baseActivity.supportActionBar?.setDisplayHomeAsUpEnabled(setButtonBack())
+
+        if(setButtonBack()){
+            setToolbar()?.setNavigationOnClickListener {
+                activity?.finish()
+            }
+        }
     }
 
     abstract fun setToolbar(): Toolbar?
+
+    abstract fun setButtonBack(): Boolean
 }

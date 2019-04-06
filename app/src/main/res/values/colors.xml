@@ -4,9 +4,8 @@
     <color name="colorPrimaryDark">#092755</color>
     <color name="colorAccent">#FEB53C</color>
 
-    <color name="transparent">#00FFFFFF</color>
-    <color name="colorTextViewPrimary">#696969</color>
-    <color name="colorTextViewSecondary">#8D8D8D</color>
+    <color name="colorTextViewPrimary">#4B4B4B</color>
+    <color name="colorTextViewSecondary">#6F6F6F</color>
 
     <color name="green">#FEB53C</color>
     <color name="white">#FFFFFF</color>

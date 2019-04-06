@@ -1,6 +1,7 @@
 package com.yeputra.footballclub.ui.details
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
     private var event: Event? = null
     private var isFavorite: Boolean = false
     private var homeName = ""
+    private var eventId = ""
 
     override fun initPresenter(): LeaguePresenter {
         favPresenter = MatchFavoritePresenter(this)
@@ -31,14 +33,32 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
 
+        initData()
+        initViewConfigure()
+    }
+
+    private fun initData() {
+        eventId = intent.extras?.getString(INTENT_DATA).toString()
+        presenter.getDetail(eventId)
+    }
+
+    private fun initViewConfigure() {
         itemAdapter = MatchDetailAdapter(mutableListOf())
         rv_item_detail.layoutManager = LinearLayoutManager(this)
         rv_item_detail.overScrollMode = View.OVER_SCROLL_NEVER
         rv_item_detail.setHasFixedSize(false)
         rv_item_detail.adapter = itemAdapter
 
-        val eventId = intent.extras?.getString(INTENT_DATA)
-        presenter.getDetail(eventId?:"0")
+        swiperefresh.setColorSchemeColors(
+            ContextCompat.getColor(getContextView(),R.color.colorPrimary),
+            ContextCompat.getColor(getContextView(),R.color.colorPrimaryDark),
+            ContextCompat.getColor(getContextView(),R.color.colorAccent),
+            ContextCompat.getColor(getContextView(),R.color.devider)
+        )
+
+        swiperefresh.setOnRefreshListener {
+            presenter.getDetail(eventId)
+        }
         bt_favorite.setOnClickListener(this)
     }
 
@@ -129,5 +149,13 @@ class DetailMatchActivity : BaseActivity<LeaguePresenter>(), View.OnClickListene
                 .apply(RequestOptions().placeholder(R.drawable.ic_logo_default))
                 .into(if(team.name == homeName) img_home_logo else img_away_logo)
         }
+    }
+
+    override fun showProgressbar() {
+        swiperefresh.isRefreshing = true
+    }
+
+    override fun hideProgressbar() {
+        swiperefresh.isRefreshing = false
     }
 }

@@ -22,6 +22,20 @@ class LeaguePresenter(
             .create(ApiRespository::class.java)
     }
 
+    fun getLeagues(){
+        v.showProgressbar()
+        subscriber = api.getLeagues()
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
+    fun getLeague(leagueId: String){
+        v.showProgressbar()
+        subscriber = api.getLeague(leagueId)
+            .compose(RxUtils.applyObservableAsync())
+            .subscribe(onSuccess(), onFailed())
+    }
+
     fun getStanding(leagueId: String){
         v.showProgressbar()
         subscriber = api.getStandings(leagueId)

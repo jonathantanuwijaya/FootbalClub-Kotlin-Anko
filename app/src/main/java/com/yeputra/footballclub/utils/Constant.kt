@@ -1,5 +1,7 @@
 package com.yeputra.footballclub.utils
 
+import com.yeputra.footballclub.model.League
+
 
 /**
  * Created by yovi.putra
@@ -9,6 +11,6 @@ package com.yeputra.footballclub.utils
 
 const val BASE_URL: String = "https://www.thesportsdb.com/api/v1/json/1/"
 
-const val league: String = "4328"
+lateinit var league: League
 
 const val INTENT_DATA = "data"

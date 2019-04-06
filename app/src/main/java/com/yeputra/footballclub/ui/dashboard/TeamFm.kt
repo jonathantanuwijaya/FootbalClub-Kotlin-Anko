@@ -15,7 +15,7 @@ import com.yeputra.footballclub.ui.details.DetailTeamActivity
 import com.yeputra.footballclub.ui.search.SearchTeamActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.league
-import kotlinx.android.synthetic.main.app_bar_tab.*
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.list_match.*
 
 class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
@@ -39,10 +39,11 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
                 Intent(context,DetailTeamActivity::class.java)
                     .putExtra(INTENT_DATA, it))
         }
-        presenter.getTeams(league)
+        presenter.getTeams(league.idLeague.toString())
     }
 
     private fun initViewConfigure() {
+        toolbar_title.text = league.name
         rv_match.layoutManager = GridLayoutManager(context, 2)
         rv_match.adapter = teamAdapter
 
@@ -54,7 +55,7 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
         )
 
         swipe_container.setOnRefreshListener {
-            presenter.getTeams(league)
+            presenter.getTeams(league.idLeague.toString())
         }
     }
 
@@ -76,6 +77,8 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
 
     override fun setToolbar(): Toolbar? = toolbar
+
+    override fun setButtonBack(): Boolean = true
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_search, menu)

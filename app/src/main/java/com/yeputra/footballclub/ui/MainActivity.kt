@@ -4,10 +4,7 @@ import android.os.Bundle
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.base.BaseActivity
 import com.yeputra.footballclub.presenter.LeaguePresenter
-import com.yeputra.footballclub.ui.dashboard.FavoritesFm
-import com.yeputra.footballclub.ui.dashboard.MatchsFm
-import com.yeputra.footballclub.ui.dashboard.StandingFm
-import com.yeputra.footballclub.ui.dashboard.TeamFm
+import com.yeputra.footballclub.ui.dashboard.*
 import com.yeputra.footballclub.utils.changeTo
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,8 +18,11 @@ class MainActivity : BaseActivity<LeaguePresenter>() {
 
         button_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {
+                R.id.menu_home -> {
+                    changeTo(R.id.main_container, HomeFm())
+                }
                 R.id.menu_standing -> {
-                    changeTo(R.id.main_container, StandingFm.getInstance())
+                    changeTo(R.id.main_container, StandingFm())
                 }
                 R.id.menu_match -> {
                     changeTo(R.id.main_container, MatchsFm())
@@ -36,6 +36,6 @@ class MainActivity : BaseActivity<LeaguePresenter>() {
             }
             true
         }
-        button_navigation.selectedItemId = R.id.menu_standing
+        button_navigation.selectedItemId = R.id.menu_home
     }
 }

@@ -16,8 +16,6 @@
     <string name="botnav_match">Match</string>
     <string name="lbl_prev_match">Last Match</string>
     <string name="lbl_next_match">Next Match</string>
-    <string name="botnav_prev_match">Prev. Match</string>
-    <string name="botnav_next_match">Next Match</string>
     <string name="botnav_favorite">Favorites</string>
 
     <string name="fav_add_successfully">This event was successfully added to the favorites list</string>
@@ -32,9 +30,9 @@
 
     <!-- PLAYER -->
     <string name="lbl_players">Players</string>
-    <string name="lbl_player">Player</string>
 
     <!-- STANDING -->
+    <string name="lbl_home">Home</string>
     <string name="lbl_standings">Standings</string>
     <string name="lbl_number">#</string>
     <string name="lbl_team">Team</string>
@@ -46,9 +44,17 @@
     <string name="lbl_point">Pts</string>
 
     <string name="stadium">Stadium</string>
-    <string name="website">Website</string>
     <string name="description">Description</string>
 
     <string name="find_event">find event</string>
     <string name="find_team">find team</string>
+
+    <!-- HOME -->
+    <string name="lbl_country">Country</string>
+    <string name="lbl_formed_year">Formed Year</string>
+    <string name="lbl_date_first_event">Date First Event</string>
+
+    <!-- LEAGUE -->
+    <string name="choose_league">Choose the league you want</string>
+    <string name="arrow_choose">\></string>
 </resources>

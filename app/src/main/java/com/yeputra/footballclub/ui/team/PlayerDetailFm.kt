@@ -39,7 +39,7 @@ class PlayerDetailFm : BottomSheetDialogFragment() {
             tv_nationality.text = player?.nationality
 
             val location = player?.birthLocation?.split(",")?.get(0)
-            val dateBorn = formatDate(player?.dateBorn)
+            val dateBorn = DateUtils.parser(player?.dateBorn, "yyyy-MM-dd", "dd-MMM-yyyy")
             tv_birthdate_location.text = "$location, $dateBorn"
             tv_gender.text = player?.gender
 
@@ -49,17 +49,11 @@ class PlayerDetailFm : BottomSheetDialogFragment() {
 
             tv_team_name.text = player?.team
             tv_posisiton.text = player?.position
-            tv_date_signed.text = formatDate(player?.dateSigned)
+            tv_date_signed.text = DateUtils.parser(player?.dateSigned, "yyyy-MM-dd", "dd-MMM-yyyy")
 
             tv_desc.text = player?.description
         }
     }
-
-    private fun formatDate(date: String?): String = try {
-        DateUtils.format(DateUtils.parser(date,"yyyy-MM-dd"),"dd-MMM-yyyy")
-    }catch (e: Exception){ "" }
-
-
 
     private fun formatWidthOrWeight(wage: String?, weight: String?): String =
         wage?.let {

@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.yeputra.footballclub.utils.LoadingController
 import com.yeputra.footballclub.utils.toast
 
 
@@ -16,15 +15,11 @@ import com.yeputra.footballclub.utils.toast
 abstract class BaseActivity<presenter: IBasePresenter>
     : AppCompatActivity(), IBaseView {
 
-    private lateinit var loading: LoadingController
-
     protected lateinit var presenter: presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = initPresenter()
-
-        loading = LoadingController(this)
     }
 
     override fun onDestroy() {
@@ -36,9 +31,9 @@ abstract class BaseActivity<presenter: IBasePresenter>
 
     override fun getContextView(): Context = this
 
-    override fun showProgressbar() = loading.showDialog()
+    override fun showProgressbar() {}
 
-    override fun hideProgressbar() = loading.hideDialog()
+    override fun hideProgressbar() {}
 
     override fun onPresenterSuccess(data: Any?) {
         Log.d(TAG, "onPresenterSuccess")

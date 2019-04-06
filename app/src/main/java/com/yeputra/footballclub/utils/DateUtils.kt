@@ -12,4 +12,8 @@ object DateUtils {
     @SuppressLint("SimpleDateFormat")
     fun parser(date: String?, format: String): Date =
         SimpleDateFormat(format).parse(date)
+
+    fun parser(date: String?, fromFormat: String, toFormat: String): String = try {
+        DateUtils.format(DateUtils.parser(date,fromFormat),toFormat)
+    }catch (e: Exception){ "" }
 }
