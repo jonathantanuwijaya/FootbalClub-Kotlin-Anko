@@ -29,6 +29,11 @@ class SplashScreenActivity : BaseActivity<LeaguePresenter>() {
         }
     }
 
+    override fun onPresenterFailed(message: String?) {
+        super.onPresenterFailed(message)
+        presenter.getLeagues()
+    }
+
     override fun showProgressbar() {}
 
     override fun hideProgressbar() {}

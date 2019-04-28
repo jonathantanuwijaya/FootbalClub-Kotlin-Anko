@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.VPagerAdapter
 import com.yeputra.footballclub.base.BaseToolbarActivity
 import com.yeputra.footballclub.model.Pagers
@@ -18,9 +17,11 @@ import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.presenter.TeamFavoritePresenter
 import com.yeputra.footballclub.ui.team.PlayersFm
 import com.yeputra.footballclub.ui.team.TeamInfoFm
+import com.yeputra.footballclub.utils.AppBarStateChangeListener
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.snackbar
 import kotlinx.android.synthetic.main.activity_detail_team.*
+
 
 class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
     private lateinit var team: Team
@@ -30,7 +31,7 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_team)
+        setContentView(com.yeputra.footballclub.R.layout.activity_detail_team)
         initData()
         initViewConfigure()
     }
@@ -45,7 +46,7 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
     private fun initViewConfigure(){
         Glide.with(this)
             .load(team.logo)
-            .apply(RequestOptions().placeholder(R.drawable.ic_logo_default))
+            .apply(RequestOptions().placeholder(com.yeputra.footballclub.R.drawable.ic_logo_default))
             .into(img_logo)
         tv_title.text = team.name?.toUpperCase()
         tv_website.text = team.website
@@ -56,12 +57,24 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
         playersFm.arguments = bundle
 
         val fragments = mutableListOf(
-            Pagers(getString(R.string.lbl_team_info), teamInfoFm),
-            Pagers(getString(R.string.lbl_players), playersFm)
+            Pagers(getString(com.yeputra.footballclub.R.string.lbl_team_info), teamInfoFm),
+            Pagers(getString(com.yeputra.footballclub.R.string.lbl_players), playersFm)
         )
         viewpager.adapter = supportFragmentManager?.let { VPagerAdapter(fragments, it) }
         tab.setupWithViewPager(viewpager)
         viewpager.overScrollMode = View.OVER_SCROLL_NEVER
+
+        appBarLayout.addOnOffsetChangedListener(AppBarStateChangeListener {
+                state: AppBarStateChangeListener.State ->
+            when (state) {
+                AppBarStateChangeListener.State.COLLAPSED -> {
+                    collapsing_toolbar.title = team.name
+                }
+                else -> {
+                    collapsing_toolbar.title = ""
+                }
+            }
+        })
     }
 
     private fun setFlagFavorite(){
@@ -75,23 +88,23 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        val item = menu?.findItem(R.id.menu_favorite)
+        val item = menu?.findItem(com.yeputra.footballclub.R.id.menu_favorite)
         item?.let { setMenuIconFavorite(it, isFavorite) }
         return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_favorite, menu)
+        menuInflater.inflate(com.yeputra.footballclub.R.menu.menu_favorite, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.menu_favorite -> {
+            com.yeputra.footballclub.R.id.menu_favorite -> {
                 isFavorite = !isFavorite
                 if(!isFavorite){
                     team.idTeam?.let {teamFavoritePresenter.delete(it){
-                        snackbar(getString(R.string.fav_team_delete_successfully))
+                        snackbar(getString(com.yeputra.footballclub.R.string.fav_team_delete_successfully))
                         setMenuIconFavorite(item, isFavorite)
                     }}
                 }else{
@@ -101,7 +114,7 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
                             team.name,
                             team.logo
                         )){
-                        snackbar(getString(R.string.fav_team_add_successfully))
+                        snackbar(getString(com.yeputra.footballclub.R.string.fav_team_add_successfully))
                         setMenuIconFavorite(item, isFavorite)
                     }
                 }
@@ -112,9 +125,9 @@ class DetailTeamActivity : BaseToolbarActivity<LeaguePresenter>() {
 
     private fun setMenuIconFavorite(item: MenuItem, isFavorited: Boolean){
         if(isFavorited)
-            item.icon = ContextCompat.getDrawable(getContextView(), R.drawable.ic_favorite_selected)
+            item.icon = ContextCompat.getDrawable(getContextView(), com.yeputra.footballclub.R.drawable.ic_favorite_selected)
         else
-            item.icon = ContextCompat.getDrawable(getContextView(), R.drawable.ic_favorite_unselect)
+            item.icon = ContextCompat.getDrawable(getContextView(), com.yeputra.footballclub.R.drawable.ic_favorite_unselect)
     }
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)

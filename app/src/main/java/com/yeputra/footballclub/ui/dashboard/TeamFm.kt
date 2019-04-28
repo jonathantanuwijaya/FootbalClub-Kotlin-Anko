@@ -4,21 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.Toolbar
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.TeamAdapter
-import com.yeputra.footballclub.base.BaseToolbarFragment
+import com.yeputra.footballclub.base.BaseFragment
 import com.yeputra.footballclub.model.TeamsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.ui.details.DetailTeamActivity
-import com.yeputra.footballclub.ui.search.SearchTeamActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
 import com.yeputra.footballclub.utils.league
-import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.list_match.*
 
-class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
+class TeamFm : BaseFragment<LeaguePresenter>() {
     private lateinit var teamAdapter: TeamAdapter
 
     override fun onCreateView(
@@ -43,7 +43,6 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
     }
 
     private fun initViewConfigure() {
-        toolbar_title.text = league.name
         rv_match.layoutManager = GridLayoutManager(context, 2)
         rv_match.adapter = teamAdapter
 
@@ -66,6 +65,11 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
         }
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        menu?.findItem(R.id.menu_search)?.isVisible = true
+        super.onPrepareOptionsMenu(menu)
+    }
+
     override fun showProgressbar() {
         swipe_container.isRefreshing = true
     }
@@ -76,19 +80,4 @@ class TeamFm : BaseToolbarFragment<LeaguePresenter>() {
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
 
-    override fun setToolbar(): Toolbar? = toolbar
-
-    override fun setButtonBack(): Boolean = true
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_search, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.menu_search -> startActivity(Intent(context, SearchTeamActivity::class.java))
-        }
-        return true
-    }
 }

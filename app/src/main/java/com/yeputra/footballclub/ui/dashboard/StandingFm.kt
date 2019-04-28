@@ -3,22 +3,19 @@ package com.yeputra.footballclub.ui.dashboard
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.yeputra.footballclub.R
 import com.yeputra.footballclub.adapter.StandingsAdapter
-import com.yeputra.footballclub.base.BaseToolbarFragment
+import com.yeputra.footballclub.base.BaseFragment
 import com.yeputra.footballclub.model.StandingsResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.utils.league
-import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_standing.*
 
-class StandingFm : BaseToolbarFragment<LeaguePresenter>() {
-    override fun setButtonBack(): Boolean = true
-
+class StandingFm : BaseFragment<LeaguePresenter>() {
     private lateinit var adapter: StandingsAdapter
 
     override fun onCreateView(
@@ -41,7 +38,6 @@ class StandingFm : BaseToolbarFragment<LeaguePresenter>() {
     }
 
     private fun initViewConfigure(){
-        toolbar_title.text = league.name
         rv_match.layoutManager = LinearLayoutManager(context)
         rv_match.overScrollMode = View.OVER_SCROLL_NEVER
         rv_match.adapter = adapter
@@ -66,6 +62,11 @@ class StandingFm : BaseToolbarFragment<LeaguePresenter>() {
         }
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        menu?.findItem(R.id.menu_search)?.isVisible = false
+        super.onPrepareOptionsMenu(menu)
+    }
+
     override fun showProgressbar() {
         swipe_container?.isRefreshing = true
     }
@@ -75,6 +76,4 @@ class StandingFm : BaseToolbarFragment<LeaguePresenter>() {
     }
 
     override fun initPresenter(): LeaguePresenter = LeaguePresenter(this)
-
-    override fun setToolbar(): Toolbar? = toolbar
 }

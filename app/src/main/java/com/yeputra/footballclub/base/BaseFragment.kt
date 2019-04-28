@@ -31,6 +31,12 @@ abstract class BaseFragment<presenter: IBasePresenter>
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setHasOptionsMenu(true)
+        Log.d("A=","Resume..")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = initPresenter()

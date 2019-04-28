@@ -3,56 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
-
-    <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-
-        <ImageView
-                android:id="@+id/img_logo"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="@dimen/logo_width"
-                android:layout_height="@dimen/logo_height"
-                android:src="@drawable/logo"
-                android:layout_marginBottom="@dimen/margin_small"
-                android:contentDescription="@string/description"/>
-
-        <TextView
-                android:id="@+id/tv_name"
-                android:text="@string/league_name"
-                android:textColor="@color/colorAccent"
-                android:gravity="center"
-                style="@style/TextView.BigBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:id="@+id/tv_website"
-                android:text="@string/league_name"
-                android:textColor="@color/white"
-                android:autoLink="web"
-                android:textStyle="italic"
-                android:gravity="center"
-                style="@style/TextView.Small"
-                android:layout_marginBottom="@dimen/margin_medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swiperefresh"
@@ -60,100 +11,144 @@
             android:layout_height="match_parent">
         <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+        android:overScrollMode="never">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/margin_medium">
-
-                <TextView
-                        android:id="@+id/lbl_country"
-                        style="@style/TextView.Small"
-                        android:textColor="@color/colorAccent"
-                        android:text="@string/lbl_country"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                <TextView
-                        android:id="@+id/tv_country"
-                        style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
-                        android:text="@string/lbl_country"
+                    android:orientation="vertical">
+                <android.support.design.widget.AppBarLayout
+                        android:id="@+id/appBarLayout"
                         android:layout_width="match_parent"
-                        android:layout_marginBottom="@dimen/margin_extra_small"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:fitsSystemWindows="true"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/margin_medium">
 
-                <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/divider"
-                        android:background="@color/colorPrimary"
-                        android:layout_marginBottom="@dimen/margin_medium"/>
+                    <ImageView
+                            android:id="@+id/img_logo"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="@dimen/logo_width"
+                            android:layout_height="@dimen/logo_height"
+                            android:src="@drawable/logo"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:contentDescription="@string/description"/>
 
-                <TextView
-                        android:id="@+id/lbl_formed_year"
-                        style="@style/TextView.Small"
-                        android:textColor="@color/colorAccent"
-                        android:text="@string/lbl_formed_year"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    <TextView
+                            android:id="@+id/tv_name"
+                            android:text="@string/league_name"
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            style="@style/TextView.BigBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
-                <TextView
-                        android:id="@+id/tv_formed_year"
-                        style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
-                        android:text="@string/lbl_formed_year"
+                    <TextView
+                            android:id="@+id/tv_website"
+                            android:text="@string/league_name"
+                            android:textColor="@color/white"
+                            android:autoLink="web"
+                            android:textStyle="italic"
+                            android:gravity="center"
+                            style="@style/TextView.Small"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                </android.support.design.widget.AppBarLayout>
+
+                <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_marginBottom="@dimen/margin_extra_small"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_medium">
+                    <TextView
+                            android:id="@+id/lbl_country"
+                            style="@style/TextView.Small"
+                            android:textColor="@color/colorAccent"
+                            android:text="@string/lbl_country"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
-                <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/divider"
-                        android:background="@color/colorPrimary"
-                        android:layout_marginBottom="@dimen/margin_medium"/>
+                    <TextView
+                            android:id="@+id/tv_country"
+                            style="@style/TextView.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/lbl_country"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="@dimen/margin_extra_small"
+                            android:layout_height="wrap_content"/>
 
-                <TextView
-                        android:id="@+id/lbl_date_first_event"
-                        style="@style/TextView.Small"
-                        android:textColor="@color/colorAccent"
-                        android:text="@string/lbl_date_first_event"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/divider"
+                            android:background="@color/colorPrimary"
+                            android:layout_marginBottom="@dimen/margin_medium"/>
 
-                <TextView
-                        android:id="@+id/tv_date_first_event"
-                        style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
-                        android:text="@string/lbl_date_first_event"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="@dimen/margin_extra_small"
-                        android:layout_height="wrap_content"/>
+                    <TextView
+                            android:id="@+id/lbl_formed_year"
+                            style="@style/TextView.Small"
+                            android:textColor="@color/colorAccent"
+                            android:text="@string/lbl_formed_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
-                <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/divider"
-                        android:background="@color/colorPrimary"
-                        android:layout_marginBottom="@dimen/margin_medium"/>
+                    <TextView
+                            android:id="@+id/tv_formed_year"
+                            style="@style/TextView.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/lbl_formed_year"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="@dimen/margin_extra_small"
+                            android:layout_height="wrap_content"/>
 
-                <TextView
-                        android:id="@+id/lbl_desc"
-                        style="@style/TextView.Small"
-                        android:textColor="@color/colorAccent"
-                        android:text="@string/description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/divider"
+                            android:background="@color/colorPrimary"
+                            android:layout_marginBottom="@dimen/margin_medium"/>
 
-                <TextView
-                        android:id="@+id/tv_desc"
-                        style="@style/TextView.Medium"
-                        android:textColor="@color/colorPrimary"
-                        android:text="@string/lbl_date_first_event"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="@dimen/margin_extra_small"
-                        android:layout_height="wrap_content"/>
+                    <TextView
+                            android:id="@+id/lbl_date_first_event"
+                            style="@style/TextView.Small"
+                            android:textColor="@color/colorAccent"
+                            android:text="@string/lbl_date_first_event"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <TextView
+                            android:id="@+id/tv_date_first_event"
+                            style="@style/TextView.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/lbl_date_first_event"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="@dimen/margin_extra_small"
+                            android:layout_height="wrap_content"/>
+
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/divider"
+                            android:background="@color/colorPrimary"
+                            android:layout_marginBottom="@dimen/margin_medium"/>
+
+                    <TextView
+                            android:id="@+id/lbl_desc"
+                            style="@style/TextView.Small"
+                            android:textColor="@color/colorAccent"
+                            android:text="@string/description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <TextView
+                            android:id="@+id/tv_desc"
+                            style="@style/TextView.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/lbl_date_first_event"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="@dimen/margin_extra_small"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

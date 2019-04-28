@@ -2,14 +2,14 @@ package com.yeputra.footballclub.ui.dashboard
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.yeputra.footballclub.R
-import com.yeputra.footballclub.base.BaseToolbarFragment
+import com.yeputra.footballclub.base.BaseFragment
 import com.yeputra.footballclub.model.League
 import com.yeputra.footballclub.model.LeaguesResponse
 import com.yeputra.footballclub.presenter.LeaguePresenter
@@ -18,11 +18,7 @@ import com.yeputra.footballclub.utils.league
 import com.yeputra.footballclub.utils.toast
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFm : BaseToolbarFragment<LeaguePresenter>() {
-    override fun setButtonBack(): Boolean = true
-
-    override fun setToolbar(): Toolbar? = toolbar
-
+class HomeFm : BaseFragment<LeaguePresenter>() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,6 +74,11 @@ class HomeFm : BaseToolbarFragment<LeaguePresenter>() {
                 }
             }
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        menu?.findItem(R.id.menu_search)?.isVisible = false
+        super.onPrepareOptionsMenu(menu)
     }
 
     override fun showProgressbar() {

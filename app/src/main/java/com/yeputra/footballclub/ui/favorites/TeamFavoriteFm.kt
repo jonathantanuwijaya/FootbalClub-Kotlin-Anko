@@ -16,7 +16,6 @@ import com.yeputra.footballclub.presenter.LeaguePresenter
 import com.yeputra.footballclub.presenter.TeamFavoritePresenter
 import com.yeputra.footballclub.ui.details.DetailTeamActivity
 import com.yeputra.footballclub.utils.INTENT_DATA
-import com.yeputra.footballclub.utils.gone
 import kotlinx.android.synthetic.main.list_match.*
 
 class TeamFavoriteFm : BaseFragment<TeamFavoritePresenter>() {
@@ -66,7 +65,6 @@ class TeamFavoriteFm : BaseFragment<TeamFavoritePresenter>() {
     }
 
     private fun initViewConfigure() {
-        header.gone()
         rv_match.layoutManager = GridLayoutManager(context, 2)
         rv_match.adapter = teamAdapter
 

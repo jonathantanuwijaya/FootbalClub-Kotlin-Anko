@@ -1,9 +1,7 @@
 package com.yeputra.footballclub.base
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.View
 
 
 /**
@@ -15,9 +13,12 @@ import android.view.View
 abstract class BaseToolbarFragment<presenter: IBasePresenter>
     : BaseFragment<presenter>(){
 
+    override fun onStart() {
+        super.onStart()
+        configToolbar()
+    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun configToolbar() {
         setHasOptionsMenu(true)
         val baseActivity = (activity as AppCompatActivity)
         baseActivity.setSupportActionBar(setToolbar())

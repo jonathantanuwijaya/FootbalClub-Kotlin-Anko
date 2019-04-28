@@ -5,11 +5,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <include
-            android:id="@+id/header"
-            layout="@layout/app_bar">
-    </include>
-
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_container"
             android:layout_width="match_parent"
@@ -22,5 +17,4 @@
                 android:paddingEnd="@dimen/margin_extra_small">
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
-
 </LinearLayout>
